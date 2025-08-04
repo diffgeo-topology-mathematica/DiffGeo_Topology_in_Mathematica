@@ -1,0 +1,240 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9246,        232]
+NotebookOptionsPosition[      8530,        212]
+NotebookOutlinePosition[      8978,        229]
+CellTagsIndexPosition[      8935,        226]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Description: 
+The circle of radius 1, centered around the origin is plotted in blue. The \
+line passing though the North pole is plotted in red. As the slider is moved, \
+the intersection of the red line and the circle (denoted as \
+\[OpenCurlyDoubleQuote]O\[CloseCurlyDoubleQuote]) and the intersection of the \
+red line and the x-axis (denoted as \[OpenCurlyDoubleQuote]X\
+\[CloseCurlyDoubleQuote]) moves. Using the stereographic projection map, the \
+points denoted as \[OpenCurlyDoubleQuote]O\[CloseCurlyDoubleQuote] on the \
+circle are mapped to \[OpenCurlyDoubleQuote]X\[CloseCurlyDoubleQuote] on \
+x-axis.\
+\>", "Text",
+ CellChangeTimes->{{3.9450759251881485`*^9, 3.945075925888685*^9}, {
+   3.945076946103196*^9, 3.9450769501750307`*^9}, {3.945076999317521*^9, 
+   3.945077076982918*^9}, {3.9450771230481577`*^9, 3.945077292831195*^9}, 
+   3.9450774704063826`*^9, {3.945077522512351*^9, 
+   3.9450775436307306`*^9}},ExpressionUUID->"b6f9345b-c470-46a6-bb30-\
+727cc637571d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[Delta]", " ", "=", 
+   SuperscriptBox["10", 
+    RowBox[{"-", "3"}]]}], ";", " ", 
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"Show", "[", 
+     RowBox[{
+      RowBox[{"ContourPlot", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"x", "^", "2"}], "+", " ", 
+            RowBox[{"y", "^", "2"}]}], "==", "1"}], ",", 
+          RowBox[{"x", "  ", "==", "0"}], ",", 
+          RowBox[{"y", "==", "0"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"y", ",", 
+          RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+        RowBox[{"PlotPoints", "\[Rule]", "100"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}]}], "]"}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{"1", "+", 
+         RowBox[{
+          RowBox[{"Tan", "[", "\[Theta]", "]"}], " ", "x"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+        RowBox[{"PlotStyle", "\[Rule]", "Red"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", " ", 
+      RowBox[{"Graphics", "[", 
+       RowBox[{"Locator", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "1"}], "/", 
+            RowBox[{"Tan", "[", "\[Theta]", "]"}]}], ",", "0"}], "}"}], ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<X\>\"", ",", 
+           RowBox[{"FontSize", "\[Rule]", "10"}]}], "]"}]}], "]"}], "]"}], 
+      ",", "\[IndentingNewLine]", " ", 
+      RowBox[{"Graphics", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Locator", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<O\>\"", ",", 
+             RowBox[{"FontSize", "\[Rule]", "10"}]}], "]"}]}], "]"}], "&"}], "/@", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y"}], "}"}], "/.", 
+          RowBox[{"(", 
+           RowBox[{"NSolve", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"y", "==", 
+               RowBox[{"1", "+", 
+                RowBox[{
+                 RowBox[{"Tan", "[", "\[Theta]", "]"}], " ", "x"}]}]}], "&&", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"x", ",", "y"}], "}"}], "\[Element]", 
+                RowBox[{"Circle", "[", "]"}]}], ")"}]}], ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "y"}], "}"}]}], "]"}], ")"}]}], ")"}]}], 
+       "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"\[Theta]", ",", 
+      RowBox[{"0", "-", "\[Delta]"}], ",", 
+      RowBox[{"Pi", "-", "\[Delta]"}]}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.945075154628663*^9, 3.945075390393197*^9}, {
+  3.9450754382420087`*^9, 3.945075493119223*^9}, {3.945075535315112*^9, 
+  3.945075673697838*^9}, {3.945075862502928*^9, 3.945075902395336*^9}, {
+  3.945075934694944*^9, 3.945075962202357*^9}, {3.945076124106742*^9, 
+  3.945076153356389*^9}, {3.945076184842029*^9, 3.945076236580235*^9}, {
+  3.945076658397116*^9, 3.9450767249802465`*^9}, {3.9450767823507404`*^9, 
+  3.945076830263663*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"234e7aad-d4ca-48d3-944d-617734502e59"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Theta]$$ = 2.1101502632123412`, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`\[Theta]$$], 
+      Rational[-1, 1000], Rational[-1, 1000] + Pi}}, Typeset`size$$ = {
+    463.19999999999993`, {179., 184.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Theta]$$ = Rational[-1, 1000]}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[
+        ContourPlot[{$CellContext`x^2 + $CellContext`y^2 == 1, $CellContext`x == 
+          0, $CellContext`y == 0}, {$CellContext`x, -5, 
+          5}, {$CellContext`y, -5, 5}, PlotPoints -> 100, 
+         PlotRange -> {{-2, 2}, {-2, 2}}, PlotLegends -> "Expressions"], 
+        Plot[
+        1 + Tan[$CellContext`\[Theta]$$] $CellContext`x, {$CellContext`x, -3, 
+          3}, PlotStyle -> Red], 
+        Graphics[
+         Locator[{(-1)/Tan[$CellContext`\[Theta]$$], 0}, 
+          Style["X", FontSize -> 10]]], 
+        Graphics[
+         Map[Locator[#, 
+           Style["O", FontSize -> 10]]& , 
+          ReplaceAll[{$CellContext`x, $CellContext`y}, 
+           NSolve[
+            
+            And[$CellContext`y == 
+             1 + Tan[$CellContext`\[Theta]$$] $CellContext`x, 
+             Element[{$CellContext`x, $CellContext`y}, 
+              Circle[]]], {$CellContext`x, $CellContext`y}]]]]], 
+      "Specifications" :> {{$CellContext`\[Theta]$$, 
+         Rational[-1, 1000], Rational[-1, 1000] + Pi}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{510., {221.634033203125, 227.365966796875}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.945075902927173*^9, 3.945075962668784*^9, {3.945076136487524*^9, 
+   3.9450761548437*^9}, {3.945076666475038*^9, 3.945076706274795*^9}, {
+   3.9450768009401217`*^9, 3.945076831087908*^9}, 3.9450768906634097`*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"ba4af477-24aa-48d0-8c19-0f1c43b529bf"]
+}, Open  ]],
+
+Cell["\<\
+More on the Stereographic Projection can be found in the Mathematica \
+repository:
+https://resources.wolframcloud.com/FunctionRepository/resources/\
+StereographicProjection/\
+\>", "Text",
+ CellChangeTimes->{{3.945077417380205*^9, 
+  3.9450774514289584`*^9}},ExpressionUUID->"a12328b3-c8ec-4bf5-8d92-\
+31dc464f4136"]
+},
+WindowSize->{960, 472},
+WindowMargins->{{-5.5, Automatic}, {Automatic, -5.5}},
+TaggingRules-><|"TryRealOnly" -> False|>,
+FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e220b1fc-4c85-49e7-8220-9b65d6fa20b4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 991, 17, 104, "Text",ExpressionUUID->"b6f9345b-c470-46a6-bb30-727cc637571d"],
+Cell[CellGroupData[{
+Cell[1574, 41, 3778, 98, 162, "Input",ExpressionUUID->"234e7aad-d4ca-48d3-944d-617734502e59"],
+Cell[5355, 141, 2831, 58, 468, "Output",ExpressionUUID->"ba4af477-24aa-48d0-8c19-0f1c43b529bf"]
+}, Open  ]],
+Cell[8201, 202, 325, 8, 58, "Text",ExpressionUUID->"a12328b3-c8ec-4bf5-8d92-31dc464f4136"]
+}
+]
+*)
+

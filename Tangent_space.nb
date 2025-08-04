@@ -1,0 +1,81 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2498,         73]
+NotebookOptionsPosition[      1876,         56]
+NotebookOutlinePosition[      2277,         72]
+CellTagsIndexPosition[      2234,         69]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Peeter Joot (2014), \[OpenCurlyDoubleQuote]The Dual Basis for the Tangent \
+Space of a 2D Surface\[CloseCurlyDoubleQuote] Wolfram Demonstrations Project. \
+demonstrations.wolfram.com/TheDualBasisForTheTangentSpaceOfA2DSurface/\
+\>", "Text",
+ CellChangeTimes->{
+  3.945131393468709*^9},ExpressionUUID->"f9b2a982-a3bf-461b-b47f-\
+8b70378ef605"],
+
+Cell["\<\
+Jeff Bryant, Yu-Sung Chang (2007), \[OpenCurlyDoubleQuote]Tangent to a \
+Surface\[CloseCurlyDoubleQuote] Wolfram Demonstrations Project. \
+demonstrations.wolfram.com/TangentToASurface/\
+\>", "Text",
+ CellChangeTimes->{{3.9451316739976463`*^9, 
+  3.945131682430909*^9}},ExpressionUUID->"0d298d14-e370-4dc3-8b1b-\
+13ebc9c254a4"],
+
+Cell["\<\
+Aaron Becker (2012), \[OpenCurlyDoubleQuote]Tangent Plane to a Sphere\
+\[CloseCurlyDoubleQuote] Wolfram Demonstrations Project. \
+demonstrations.wolfram.com/TangentPlaneToASphere/\
+\>", "Text",
+ CellChangeTimes->{
+  3.9451319154630547`*^9},ExpressionUUID->"951ba399-a64c-4187-a7fa-\
+f5b0232befba"],
+
+Cell["\<\
+Drew Kozicki (2011), \[OpenCurlyDoubleQuote]Tangent Planes on a 3D Graph\
+\[CloseCurlyDoubleQuote] Wolfram Demonstrations Project. \
+demonstrations.wolfram.com/TangentPlanesOnA3DGraph/\
+\>", "Text",
+ CellChangeTimes->{
+  3.945132032000188*^9},ExpressionUUID->"3c605361-da36-488c-b2af-\
+c4eefd1456ed"]
+},
+WindowSize->{606., 659.25},
+WindowMargins->{{417, Automatic}, {20.25, Automatic}},
+FrontEndVersion->"13.0 for Linux x86 (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"5ceab11e-8271-48e8-851f-e7992b176b46"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 352, 7, 81, "Text",ExpressionUUID->"f9b2a982-a3bf-461b-b47f-8b70378ef605"],
+Cell[913, 29, 336, 7, 58, "Text",ExpressionUUID->"0d298d14-e370-4dc3-8b1b-13ebc9c254a4"],
+Cell[1252, 38, 307, 7, 58, "Text",ExpressionUUID->"951ba399-a64c-4187-a7fa-f5b0232befba"],
+Cell[1562, 47, 310, 7, 58, "Text",ExpressionUUID->"3c605361-da36-488c-b2af-c4eefd1456ed"]
+}
+]
+*)
+
