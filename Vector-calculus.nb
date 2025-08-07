@@ -1,0 +1,130 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3767,        120]
+NotebookOptionsPosition[      2847,         95]
+NotebookOutlinePosition[      3252,        111]
+CellTagsIndexPosition[      3209,        108]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "Gradient", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"Grad", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "^", "2"}], " ", "y"}], "+", "z"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9635393612721386`*^9, 3.9635393743268604`*^9}, 
+   3.963539417088332*^9},
+ CellLabel->"In[59]:=",ExpressionUUID->"d1460ee6-db63-402a-a0a8-6144082beea4"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"2", " ", "x", " ", "y"}], ",", 
+   SuperscriptBox["x", "2"], ",", "1"}], "}"}]], "Output",
+ CellChangeTimes->{3.963539419453124*^9},
+ CellLabel->"Out[59]=",ExpressionUUID->"d1fe35a8-299a-43d9-810d-a1f9dc9426f5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "Divergence", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"Div", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"x", "^", "2"}], ",", 
+      RowBox[{"y", "^", "2"}], ",", 
+      RowBox[{"z", "^", "2"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.963539424005268*^9, 3.9635394588080845`*^9}},
+ CellLabel->"In[60]:=",ExpressionUUID->"4320f10f-7504-4b8c-97d0-e4618d5ed6f5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"2", " ", "x"}], "+", 
+  RowBox[{"2", " ", "y"}], "+", 
+  RowBox[{"2", " ", "z"}]}]], "Output",
+ CellChangeTimes->{3.9635394607775793`*^9},
+ CellLabel->"Out[60]=",ExpressionUUID->"058970e2-286a-4e01-9304-5cc48998c5ea"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "Curl", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"Curl", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"y", ",", "z", ",", "x"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9635394715696025`*^9, 3.963539502802784*^9}},
+ CellLabel->"In[61]:=",ExpressionUUID->"ae60f3ea-9ed7-4a73-ba90-4cd9fe5dd5f2"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"-", "1"}], ",", 
+   RowBox[{"-", "1"}], ",", 
+   RowBox[{"-", "1"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.963539505205348*^9},
+ CellLabel->"Out[61]=",ExpressionUUID->"7823eaf1-b8c6-455e-9a20-6ee8d5926657"]
+}, Open  ]]
+},
+WindowSize->{571.8, 509.4},
+WindowMargins->{{284.4, Automatic}, {12, Automatic}},
+FrontEndVersion->"13.3 for Microsoft Windows (64-bit) (July 24, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"1c077a0c-2f94-4bd0-9ec6-2714356736d3"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 468, 12, 48, "Input",ExpressionUUID->"d1460ee6-db63-402a-a0a8-6144082beea4"],
+Cell[1051, 36, 263, 6, 35, "Output",ExpressionUUID->"d1fe35a8-299a-43d9-810d-a1f9dc9426f5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1351, 47, 505, 13, 48, "Input",ExpressionUUID->"4320f10f-7504-4b8c-97d0-e4618d5ed6f5"],
+Cell[1859, 62, 252, 6, 32, "Output",ExpressionUUID->"058970e2-286a-4e01-9304-5cc48998c5ea"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2148, 73, 419, 10, 48, "Input",ExpressionUUID->"ae60f3ea-9ed7-4a73-ba90-4cd9fe5dd5f2"],
+Cell[2570, 85, 261, 7, 55, "Output",ExpressionUUID->"7823eaf1-b8c6-455e-9a20-6ee8d5926657"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
