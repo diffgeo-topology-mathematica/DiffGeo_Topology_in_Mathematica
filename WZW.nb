@@ -1,0 +1,310 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10232,        300]
+NotebookOptionsPosition[      9647,        282]
+NotebookOutlinePosition[     10055,        298]
+CellTagsIndexPosition[     10012,        295]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"===", 
+    RowBox[{"==", 
+     RowBox[{"SU", 
+      RowBox[{"(", "2", ")"}], "_k", " ", 
+      RowBox[{"WZW", ":", 
+       RowBox[{
+        RowBox[{"S", "-", 
+         RowBox[{"matrix", " ", "and", " ", "Verlinde", " ", "fusion"}]}], "===",
+         "=="}]}]}]}]}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", 
+     RowBox[{"SijSU2", ",", "sMatrixSU2", ",", "fusionSU2"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Primaries", " ", "labelled", " ", "by", " ", "j"}], "=", "0"}],
+      ",", 
+     RowBox[{"1", "/", "2"}], ",", "...", ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"k", "/", "2."}], " ", 
+       RowBox[{"We", "'"}], "ll", " ", "index", " ", "by", " ", "a"}], "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"0", ".."}], "k", " ", "with", " ", "j"}], "=", 
+       RowBox[{"a", "/", "2."}]}]}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SijSU2", "[", 
+      RowBox[{
+       RowBox[{"k_Integer", "?", "NonNegative"}], ",", "a_Integer", ",", 
+       "b_Integer"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", 
+       RowBox[{"2", "/", 
+        RowBox[{"(", 
+         RowBox[{"k", "+", "2"}], ")"}]}], "]"}], "*", 
+      RowBox[{"Sin", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"a", "+", "1"}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"b", "+", "1"}], ")"}], " ", 
+        RowBox[{"Pi", "/", 
+         RowBox[{"(", 
+          RowBox[{"k", "+", "2"}], ")"}]}]}], "]"}]}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"sMatrixSU2", "[", 
+      RowBox[{"k_Integer", "?", "NonNegative"}], "]"}], ":=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"SijSU2", "[", 
+        RowBox[{"k", ",", "a", ",", "b"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "0", ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"b", ",", "0", ",", "k"}], "}"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Verlinde", ":", 
+      RowBox[{"N_", 
+       RowBox[{
+        RowBox[{"{", "ab", "}"}], "^", "c"}]}]}], "=", 
+     RowBox[{"Sum_m", " ", "S_", 
+      RowBox[{"{", "am", "}"}], " ", "S_", 
+      RowBox[{"{", "bm", "}"}], " ", "S_", 
+      RowBox[{
+       RowBox[{"{", "cm", "}"}], "/", "S_"}], 
+      RowBox[{"{", 
+       RowBox[{"0", "m"}], "}"}]}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"fusionSU2", "[", 
+      RowBox[{
+       RowBox[{"k_Integer", "?", "NonNegative"}], ",", "a_Integer", ",", 
+       "b_Integer"}], "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"S", "=", 
+          RowBox[{"sMatrixSU2", "[", "k", "]"}]}], ",", "Ntab", ",", 
+         RowBox[{"tol", "=", 
+          RowBox[{"10", "^", 
+           RowBox[{"-", "10"}]}]}], ",", 
+         RowBox[{"range", "=", 
+          RowBox[{"Range", "[", 
+           RowBox[{"0", ",", "k"}], "]"}]}]}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"Ntab", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"Total", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"S", "[", 
+                 RowBox[{"[", 
+                  RowBox[{
+                   RowBox[{"a", "+", "1"}], ",", "#"}], "]"}], "]"}], " ", 
+                RowBox[{"S", "[", 
+                 RowBox[{"[", 
+                  RowBox[{
+                   RowBox[{"b", "+", "1"}], ",", "#"}], "]"}], "]"}], " ", 
+                RowBox[{
+                 RowBox[{"S", "[", 
+                  RowBox[{"[", 
+                   RowBox[{
+                    RowBox[{"c", "+", "1"}], ",", "#"}], "]"}], "]"}], "/", 
+                 RowBox[{"S", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"1", ",", "#"}], "]"}], "]"}]}]}], ")"}], "&"}], "/@", 
+             RowBox[{"(", 
+              RowBox[{"range", "+", "1"}], ")"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"c", ",", "0", ",", "k"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "round", " ", "to", " ", "nearest", " ", "nonnegative", " ", 
+          "integer", " ", "with", " ", "tolerance"}], "*)"}], 
+        RowBox[{"Round", "[", 
+         RowBox[{"Chop", "[", 
+          RowBox[{"Ntab", ",", "tol"}], "]"}], "]"}]}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Example", ":", "k"}], "=", 
+     RowBox[{"4", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"primaries", " ", "j"}], "=", "0"}], ",", 
+        RowBox[{"1", "/", "2"}], ",", "1", ",", 
+        RowBox[{"3", "/", "2"}], ",", "2"}], ")"}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"kLevel", "=", "4"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Smat", "=", 
+     RowBox[{"sMatrixSU2", "[", "kLevel", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<Check unitarity:  S.S^T \[TildeTilde] I  \[RightArrow] max|entry-\
+\[Delta]| = \>\"", ",", 
+      RowBox[{
+       RowBox[{"Max", "[", 
+        RowBox[{"Abs", "[", 
+         RowBox[{
+          RowBox[{"Smat", ".", 
+           RowBox[{"Transpose", "[", "Smat", "]"}]}], "-", 
+          RowBox[{"IdentityMatrix", "[", 
+           RowBox[{"kLevel", "+", "1"}], "]"}]}], "]"}], "]"}], "//", "N"}]}],
+      "]"}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Fusion", " ", 
+      RowBox[{"table", ":", 
+       RowBox[{"e", ".", "g", ".", "j"}]}]}], "=", 
+     RowBox[{"1", " ", 
+      RowBox[{"(", 
+       RowBox[{"a", "=", "2"}], ")"}], " ", "fused", " ", "with", " ", 
+      "anything"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"aIndex", "=", "2"}], ";"}], "  ", 
+   RowBox[{"(*", 
+    RowBox[{"j", "=", 
+     RowBox[{
+      RowBox[{"a", "/", "2"}], "=", "1"}]}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"fusionRow", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"fusionSU2", "[", 
+        RowBox[{"kLevel", ",", "aIndex", ",", "#"}], "]"}], "&"}], "/@", 
+      RowBox[{"Range", "[", 
+       RowBox[{"0", ",", "kLevel"}], "]"}]}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"Prepend", "[", 
+      RowBox[{
+       RowBox[{"MapIndexed", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Prepend", "[", 
+           RowBox[{"#1", ",", 
+            RowBox[{"\"\<with j=\>\"", "<>", 
+             RowBox[{"ToString", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"First", "@", "#2"}], "-", "1"}], ")"}], "/", "2"}], 
+              "]"}]}]}], "]"}], "&"}], ",", "fusionRow"}], "]"}], ",", 
+       RowBox[{"Prepend", "[", 
+        RowBox[{
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"\"\<j=\>\"", "<>", 
+            RowBox[{"ToString", "[", 
+             RowBox[{"c", "/", "2"}], "]"}]}], ",", 
+           RowBox[{"{", 
+            RowBox[{"c", ",", "0", ",", "kLevel"}], "}"}]}], "]"}], ",", 
+         "\"\<\>\""}], "]"}]}], "]"}], ",", 
+     RowBox[{"Frame", "->", "All"}], ",", 
+     RowBox[{"Spacings", "->", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", ".7"}], "}"}]}], ",", 
+     RowBox[{"ItemStyle", "->", 
+      RowBox[{"Directive", "[", "14", "]"}]}]}], "]"}], "\n"}]}]], "Input",
+ CellChangeTimes->{{3.964348792506915*^9, 3.964348792506915*^9}},
+ CellLabel->
+  "In[491]:=",ExpressionUUID->"ebacf191-8f28-4fb4-b3d0-c9e1c1121b04"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Check unitarity:  S.S^T \[TildeTilde] I  \[RightArrow] \
+max|entry-\[Delta]| = \"\>", "\[InvisibleSpace]", "0.`"}],
+  SequenceForm[
+  "Check unitarity:  S.S^T \[TildeTilde] I  \[RightArrow] max|entry-\[Delta]| \
+= ", 0.],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9643487931071978`*^9},
+ CellLabel->
+  "During evaluation of \
+In[491]:=",ExpressionUUID->"71294467-8b0e-4f34-a7f4-8fcf82f27286"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"\"\>", "\<\"j=0\"\>", "\<\"j=1\\n-\\n2\"\>", "\<\"j=1\"\>", \
+"\<\"j=3\\n-\\n2\"\>", "\<\"j=2\"\>"},
+    {"\<\"with j=0\"\>", "0", "0", "1", "0", "0"},
+    {"\<\"with j=1\\n-\\n2\"\>", "0", "1", "0", "1", "0"},
+    {"\<\"with j=1\"\>", "1", "0", "1", "0", "1"},
+    {"\<\"with j=3\\n-\\n2\"\>", "0", "1", "0", "1", "0"},
+    {"\<\"with j=2\"\>", "0", "0", "1", "0", "0"}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+   GridBoxItemStyle->{"Columns" -> {{
+        Directive[14]}}, "Rows" -> {{
+        Directive[14]}}},
+   GridBoxSpacings->{"Columns" -> {{1}}, "Rows" -> {{0.7}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{3.964348793122998*^9},
+ CellLabel->
+  "Out[500]=",ExpressionUUID->"37ae59f5-cb73-4587-850f-153a675fe46e"]
+}, Open  ]]
+},
+WindowSize->{571.8, 509.4},
+WindowMargins->{{284.4, Automatic}, {12, Automatic}},
+FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (January 30, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"c7968f05-290f-4838-999e-14af62576bfe"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 7707, 222, 790, "Input",ExpressionUUID->"ebacf191-8f28-4fb4-b3d0-c9e1c1121b04"],
+Cell[8290, 246, 450, 11, 22, "Print",ExpressionUUID->"71294467-8b0e-4f34-a7f4-8fcf82f27286"],
+Cell[8743, 259, 888, 20, 312, "Output",ExpressionUUID->"37ae59f5-cb73-4587-850f-153a675fe46e"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
