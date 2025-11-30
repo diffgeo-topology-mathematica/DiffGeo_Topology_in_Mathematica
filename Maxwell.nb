@@ -1,0 +1,1682 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     70911,       1674]
+NotebookOptionsPosition[     66910,       1597]
+NotebookOutlinePosition[     67307,       1613]
+CellTagsIndexPosition[     67264,       1610]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"<<", "DifferentialForms.m"}], ";"}]], "Input",
+ CellChangeTimes->{3.97043890647363*^9},
+ CellLabel->"In[1]:=",ExpressionUUID->"3ac40910-cd06-46c2-a575-1e95b7c60792"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SetDelayed", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"TensorProduct\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"TensorProduct\\\", \\\"[\\\", \\\"single_\\\", \
+\\\"]\\\"}]\\) is Protected.\"", 2, 1, 1, 28779164196799436938, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.970438902693083*^9, 3.9704389193017197`*^9}, 
+   3.970451510171913*^9, 3.970451787028706*^9, {3.970455922199712*^9, 
+   3.970455945121526*^9}, 3.971249669224607*^9, 3.971250083757209*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"57d27e9b-17ec-4769-be8d-4674103464d6"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SetDelayed", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"TensorProduct\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"vec\\\", \\\"[\\\", RowBox[{\\\"a_\\\", \
+\\\",\\\", RowBox[{\\\"x\\\", \\\":\\\", RowBox[{\\\"{\\\", \\\"__\\\", \\\"}\
+\\\"}]}]}], \\\"]\\\"}], \\\"\[TensorProduct]\\\", RowBox[{\\\"vec\\\", \\\"[\
+\\\", RowBox[{\\\"b_\\\", \\\",\\\", RowBox[{\\\"y\\\", \\\":\\\", RowBox[{\\\
+\"{\\\", \\\"__\\\", \\\"}\\\"}]}]}], \\\"]\\\"}], \\\"\[TensorProduct]\\\", \
+\\\"C___\\\"}]\\) is Protected.\"", 2, 1, 2, 28779164196799436938, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.970438902693083*^9, 3.9704389193017197`*^9}, 
+   3.970451510171913*^9, 3.970451787028706*^9, {3.970455922199712*^9, 
+   3.970455945121526*^9}, 3.971249669224607*^9, 3.9712500838213263`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"0bcfeaed-7064-482e-ae1a-81bce3d281a7"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SetDelayed", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"TensorProduct\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"head1_\\\", \\\"[\\\", RowBox[{\\\"a_\\\", \\\",\
+\\\", RowBox[{\\\"x\\\", \\\":\\\", RowBox[{\\\"{\\\", \\\"__\\\", \
+\\\"}\\\"}]}]}], \\\"]\\\"}], \\\"\[TensorProduct]\\\", \
+RowBox[{\\\"head2_\\\", \\\"[\\\", RowBox[{\\\"b_\\\", \\\",\\\", \
+RowBox[{\\\"y\\\", \\\":\\\", RowBox[{\\\"{\\\", \\\"__\\\", \\\"}\\\"}]}]}], \
+\\\"]\\\"}], \\\"\[TensorProduct]\\\", \\\"C___\\\"}]\\) is Protected.\"", 2, 
+   1, 3, 28779164196799436938, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.970438902693083*^9, 3.9704389193017197`*^9}, 
+   3.970451510171913*^9, 3.970451787028706*^9, {3.970455922199712*^9, 
+   3.970455945121526*^9}, 3.971249669224607*^9, 3.97125008383077*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"885ede78-d05a-44f0-8b70-e1f9d2be256a"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General", "stop", 
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"SetDelayed\\\", \
+\\\"::\\\", \\\"write\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
+during this calculation.\"", 2, 1, 4, 28779164196799436938, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.970438902693083*^9, 3.9704389193017197`*^9}, 
+   3.970451510171913*^9, 3.970451787028706*^9, {3.970455922199712*^9, 
+   3.970455945121526*^9}, 3.971249669224607*^9, 3.971250083839501*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"c484c109-bfee-4b1c-8624-b77d59072029"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Differential Forms package Version 4.0 by Frank \
+Zizza\"\>"], "Print",
+ CellChangeTimes->{{3.970438902890458*^9, 3.9704389193964357`*^9}, 
+   3.970451510358186*^9, 3.970451787125214*^9, {3.970455922292061*^9, 
+   3.970455945303801*^9}, 3.971249669250738*^9, 3.971250083845953*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"5970ed5f-7164-4698-bcd2-b30a5d2cfea6"],
+
+Cell[BoxData["\<\"with additions by Ulrich Jentschura.  For information \
+\"\>"], "Print",
+ CellChangeTimes->{{3.970438902890458*^9, 3.9704389193964357`*^9}, 
+   3.970451510358186*^9, 3.970451787125214*^9, {3.970455922292061*^9, 
+   3.970455945303801*^9}, 3.971249669250738*^9, 3.971250083847159*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"5fb3c79e-2ba0-4158-a871-239385f5652d"],
+
+Cell[BoxData["\<\"about functions, Type ?DifferentialForms .\"\>"], "Print",
+ CellChangeTimes->{{3.970438902890458*^9, 3.9704389193964357`*^9}, 
+   3.970451510358186*^9, 3.970451787125214*^9, {3.970455922292061*^9, 
+   3.970455945303801*^9}, 3.971249669250738*^9, 3.9712500838513308`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"5db59a49-4840-43aa-afc3-0211aaed3eaa"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Bvec", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Bx", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"y", ",", "z"}], "]"}]}], " ", "+", " ", 
+   RowBox[{
+    RowBox[{"By", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"z", ",", "x"}], "]"}]}], "+", " ", 
+   RowBox[{
+    RowBox[{"Bz", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"x", ",", "y"}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.970438928624147*^9, 3.97043895814891*^9}, {
+  3.970451391161064*^9, 3.9704514062372427`*^9}, {3.970451517217037*^9, 
+  3.9704515195522346`*^9}, {3.9712499972163553`*^9, 3.971249999078402*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"8a077cef-3d55-4238-90bb-a25cc8c9dd71"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"Bx", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`Bx[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", $CellContext`y, "", " ^ ", 
+    "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", 
+     RowBox[{"By", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -$CellContext`By[$CellContext`x, $CellContext`y, $CellContext`z, 
+      DifferentialForms`t], ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"Bz", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`Bz[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`y, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{3.9704389588196077`*^9, 3.9704515252368603`*^9, 
+  3.970451795013649*^9, 3.970455950870077*^9, 3.971249669471986*^9, 
+  3.9712501002245913`*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"d964eeca-f9b0-407a-9201-bd5c6fab86cd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Evec", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Ex", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", "x", "]"}]}], " ", "+", " ", 
+   RowBox[{
+    RowBox[{"Ey", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", "y", "]"}]}], " ", "+", " ", 
+   RowBox[{
+    RowBox[{"Ez", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", "z", "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.970438964635625*^9, 3.970438991043591*^9}, {
+  3.970451411347026*^9, 3.970451425875834*^9}, {3.9704515388225517`*^9, 
+  3.970451539247437*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"04cda948-819e-49b7-9bee-4f21b0248baa"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"Ex", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`Ex[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", $CellContext`x, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"Ey", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`Ey[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", $CellContext`y, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"Ez", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`Ez[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", $CellContext`z, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{3.970438991931932*^9, 3.970451542933124*^9, 
+  3.970451799841071*^9, 3.970455951167156*^9, 3.971249669482258*^9, 
+  3.971250100446631*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"c203b110-f4f6-44ba-8b1e-b004fbbff7d8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Fvec", "=", 
+  RowBox[{
+   RowBox[{"Bvec", " ", "+", " ", 
+    RowBox[{"ExteriorProduct", "[", 
+     RowBox[{"Evec", ",", " ", 
+      RowBox[{"d", "[", "t", "]"}]}], "]"}]}], " ", "//", " ", 
+   "Simplify"}]}]], "Input",
+ CellChangeTimes->{{3.970439035150227*^9, 3.970439099162139*^9}, {
+  3.970439226311571*^9, 3.9704392670679903`*^9}, {3.9704514555622272`*^9, 
+  3.970451487823732*^9}, {3.9704518807875957`*^9, 3.970451891420738*^9}, {
+  3.971249940952145*^9, 3.971249943767362*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"008af05a-40ec-4874-847b-6eaaa85ba05e"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"Bx", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`Bx[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", $CellContext`y, "", " ^ ", 
+    "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", 
+     RowBox[{"By", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -$CellContext`By[$CellContext`x, $CellContext`y, $CellContext`z, 
+      DifferentialForms`t], ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"Bz", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`Bz[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`y, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", 
+     RowBox[{"Ex", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -$CellContext`Ex[$CellContext`x, $CellContext`y, $CellContext`z, 
+      DifferentialForms`t], ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`x, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", 
+     RowBox[{"Ey", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -$CellContext`Ey[$CellContext`x, $CellContext`y, $CellContext`z, 
+      DifferentialForms`t], ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`y, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", 
+     RowBox[{"Ez", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -$CellContext`Ez[$CellContext`x, $CellContext`y, $CellContext`z, 
+      DifferentialForms`t], ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`z, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{{3.9704390383660917`*^9, 3.9704390518477783`*^9}, 
+   3.970439099830146*^9, 3.9704392681522627`*^9, 3.970451546582088*^9, 
+   3.970451811214273*^9, 3.970451891969922*^9, 3.970455951185424*^9, 
+   3.971249669499732*^9, 3.9712499446205397`*^9, 3.971250100516691*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"d9822e0d-6e17-4c09-8399-836369f3dc1e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"dBvec", "=", " ", 
+  RowBox[{"d", "[", "Bvec", "]"}]}]], "Input",
+ CellChangeTimes->{{3.970439292310186*^9, 3.970439364174279*^9}, {
+  3.970451480041575*^9, 3.970451495902294*^9}, {3.970451553125329*^9, 
+  3.970451555224049*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"8724b461-e412-4163-b5d9-e845e217621e"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     SuperscriptBox["Bx", 
+      TagBox[
+       RowBox[{"(", 
+        RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+       Derivative],
+      MultilineFunction->None], "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    Derivative[
+    0, 0, 0, 1][$CellContext`Bx][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", 
+     RowBox[{
+      SuperscriptBox["By", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -Derivative[
+     0, 0, 0, 1][$CellContext`By][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`x, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     SuperscriptBox["Bz", 
+      TagBox[
+       RowBox[{"(", 
+        RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+       Derivative],
+      MultilineFunction->None], "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    Derivative[
+    0, 0, 0, 1][$CellContext`Bz][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`x, "", " ^ ", "d", $CellContext`y, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["Bz", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["By", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["Bx", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", Derivative[
+     0, 0, 1, 0][$CellContext`Bz][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     0, 1, 0, 0][$CellContext`By][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     1, 0, 0, 0][$CellContext`Bx][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{3.970439364715516*^9, 3.970451556627076*^9, 
+  3.970455951257909*^9, 3.97124966952474*^9, 3.971250100585537*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"f3c9d567-9bc8-432d-8881-73bf4fefd266"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"d", "[", 
+  RowBox[{"ExteriorProduct", "[", 
+   RowBox[{"Evec", ",", 
+    RowBox[{"d", "[", "t", "]"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.9704518514107428`*^9, 3.970451866568758*^9}, {
+  3.970451908220787*^9, 3.970451910564096*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"eb89bff2-7e08-4461-bb4b-b0a094f86071"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{
+       SuperscriptBox["Ey", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["Ez", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -Derivative[
+      0, 0, 1, 0][$CellContext`Ey][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     0, 1, 0, 0][$CellContext`Ez][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{
+       SuperscriptBox["Ex", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["Ey", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -Derivative[
+      0, 1, 0, 0][$CellContext`Ex][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     1, 0, 0, 0][$CellContext`Ey][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`x, "", " ^ ", "d", $CellContext`y, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{
+       SuperscriptBox["Ex", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["Ez", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -Derivative[
+      0, 0, 1, 0][$CellContext`Ex][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     1, 0, 0, 0][$CellContext`Ez][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`x, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{3.970451867455163*^9, 3.9704519110796022`*^9, 
+  3.9704559512775183`*^9, 3.971249669548896*^9, 3.971250100652472*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"b31cd729-97c6-4e96-99a6-70a322b25006"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Ans", "=", 
+  RowBox[{
+   RowBox[{"d", "[", "Fvec", "]"}], " ", "//", " ", "Simplify"}]}]], "Input",
+ CellChangeTimes->{{3.9704519204655037`*^9, 3.970451991474996*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"b314ba9a-c716-4a72-b0d0-cf2a491caf40"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["Bx", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "-", 
+     RowBox[{
+      SuperscriptBox["Ey", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["Ez", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", Derivative[
+     0, 0, 0, 1][$CellContext`Bx][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] - Derivative[
+    0, 0, 1, 0][$CellContext`Ey][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     0, 1, 0, 0][$CellContext`Ez][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["Bz", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["By", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["Bx", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", Derivative[
+     0, 0, 1, 0][$CellContext`Bz][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     0, 1, 0, 0][$CellContext`By][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     1, 0, 0, 0][$CellContext`Bx][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["Bz", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "-", 
+     RowBox[{
+      SuperscriptBox["Ex", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["Ey", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", Derivative[
+     0, 0, 0, 1][$CellContext`Bz][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] - Derivative[
+    0, 1, 0, 0][$CellContext`Ex][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     1, 0, 0, 0][$CellContext`Ey][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`x, "", " ^ ", "d", $CellContext`y, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{
+       SuperscriptBox["By", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], "-", 
+     RowBox[{
+      SuperscriptBox["Ex", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["Ez", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -Derivative[
+      0, 0, 0, 1][$CellContext`By][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] - Derivative[
+    0, 0, 1, 0][$CellContext`Ex][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     1, 0, 0, 0][$CellContext`Ez][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`x, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{{3.970451929895208*^9, 3.970451993164966*^9}, 
+   3.970455951357562*^9, 3.971249669592845*^9, 3.971250100732883*^9},
+ CellLabel->"Out[7]=",ExpressionUUID->"45599cbd-0838-42f1-87af-7c5e0d966e8e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StarFvec", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Bx", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"t", ",", "x"}], "]"}]}], "+", 
+   RowBox[{
+    RowBox[{"By", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"t", ",", "y"}], "]"}]}], "+", 
+   RowBox[{
+    RowBox[{"Bz", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"t", ",", "z"}], "]"}]}], " ", "+", 
+   RowBox[{
+    RowBox[{"Ex", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"y", ",", "z"}], "]"}]}], "+", " ", 
+   RowBox[{
+    RowBox[{"Ey", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"z", ",", "x"}], "]"}]}], "+", 
+   RowBox[{
+    RowBox[{"Ez", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"x", ",", "y"}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.9704523023712177`*^9, 3.9704524157755136`*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"c27f2a28-b495-439b-96b8-1fde73f0a2cb"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"Bx", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`Bx[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`x, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"By", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`By[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`y, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"Bz", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`Bz[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"Ex", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`Ex[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", $CellContext`y, "", " ^ ", 
+    "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", 
+     RowBox[{"Ey", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -$CellContext`Ey[$CellContext`x, $CellContext`y, $CellContext`z, 
+      DifferentialForms`t], ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"Ez", "[", 
+     RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm["(", 
+    $CellContext`Ez[$CellContext`x, $CellContext`y, $CellContext`z, 
+     DifferentialForms`t], ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`y, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{3.970452369606209*^9, 3.970452417190987*^9, 
+  3.970455951375657*^9, 3.971249669604056*^9, 3.971250100745096*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"3b751ee1-5d57-4f59-9631-e0b57a5895f4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Ans2", "=", 
+  RowBox[{"d", "[", "StarFvec", "]"}]}]], "Input",
+ CellChangeTimes->{{3.970452371211379*^9, 3.9704523764450607`*^9}, {
+  3.9704524289068213`*^9, 3.9704524298967733`*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"c67f5784-6563-43f5-926b-7433c136a0be"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["Ex", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["By", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "-", 
+     RowBox[{
+      SuperscriptBox["Bz", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", Derivative[
+     0, 0, 0, 1][$CellContext`Ex][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     0, 0, 1, 0][$CellContext`By][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] - Derivative[
+    0, 1, 0, 0][$CellContext`Bz][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["Ez", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["Bx", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "-", 
+     RowBox[{
+      SuperscriptBox["By", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", Derivative[
+     0, 0, 0, 1][$CellContext`Ez][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     0, 1, 0, 0][$CellContext`Bx][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] - Derivative[
+    1, 0, 0, 0][$CellContext`By][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`x, "", " ^ ", "d", $CellContext`y, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{
+       SuperscriptBox["Ey", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["Bx", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "-", 
+     RowBox[{
+      SuperscriptBox["Bz", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -Derivative[
+      0, 0, 0, 1][$CellContext`Ey][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     0, 0, 1, 0][$CellContext`Bx][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] - Derivative[
+    1, 0, 0, 0][$CellContext`Bz][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`x, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["Ez", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["Ey", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["Ex", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", Derivative[
+     0, 0, 1, 0][$CellContext`Ez][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     0, 1, 0, 0][$CellContext`Ey][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     1, 0, 0, 0][$CellContext`Ex][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{{3.970452424391461*^9, 3.970452431026428*^9}, 
+   3.9704559514484367`*^9, 3.971249669623044*^9, 3.971250100806772*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"5fbe5e87-23d2-4a75-8547-22f4817222b6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Starj", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "rho"}], " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"x", ",", "y", ",", "z"}], "]"}]}], "+", 
+   RowBox[{"jx", " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"t", ",", "y", ",", "z"}], "]"}]}], " ", "+", " ", 
+   RowBox[{"jy", " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"t", ",", "z", ",", "x"}], "]"}]}], " ", "+", 
+   RowBox[{"jz", " ", 
+    RowBox[{"d", "[", 
+     RowBox[{"t", ",", "x", ",", "y"}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.970452470789489*^9, 3.970452519292617*^9}, {
+  3.970456127122654*^9, 3.9704561284119987`*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"33871108-628e-4ec7-888b-ad7d819df8db"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", "jx", 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", $CellContext`jx, ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", "jy"}], "\[InvisibleSpace]", "\<\") \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "t", 
+    "\[InvisibleSpace]", "\<\"\"\>", "\[InvisibleSpace]", "\<\" ^ \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "x", 
+    "\[InvisibleSpace]", "\<\"\"\>", "\[InvisibleSpace]", "\<\" ^ \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "z", 
+    "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -$CellContext`jy, ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`x, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", "jz", 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", $CellContext`jz, ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`x, "", " ^ ", "d", $CellContext`y, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", "rho"}], "\[InvisibleSpace]", "\<\") \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "x", 
+    "\[InvisibleSpace]", "\<\"\"\>", "\[InvisibleSpace]", "\<\" ^ \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "y", 
+    "\[InvisibleSpace]", "\<\"\"\>", "\[InvisibleSpace]", "\<\" ^ \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "z", 
+    "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -$CellContext`rho, ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{3.9704559514674053`*^9, 3.970456137040305*^9, 
+  3.971249669644333*^9, 3.9712501008779297`*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"47860f0e-d314-45f2-b095-9ba95c933d88"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"d", "[", 
+  RowBox[{"HodgeStar", "[", 
+   RowBox[{"Fvec", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"t", "[", 
+       RowBox[{"x", ",", "x"}], "]"}], ",", 
+      RowBox[{"t", "[", 
+       RowBox[{"y", ",", "y"}], "]"}], ",", 
+      RowBox[{"t", "[", 
+       RowBox[{"z", ",", "z"}], "]"}], ",", 
+      RowBox[{"t", "[", 
+       RowBox[{"t", ",", "t"}], "]"}]}], "}"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.970452808646134*^9, 3.9704528466190033`*^9}, {
+  3.970452913196082*^9, 3.970452928693927*^9}, {3.970456083916065*^9, 
+  3.970456086807893*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"7dfe0829-abe3-4521-85fc-823d91b8b477"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{
+       SuperscriptBox["Ex", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["By", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "-", 
+     RowBox[{
+      SuperscriptBox["Bz", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -Derivative[
+      0, 0, 0, 1][$CellContext`Ex][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     0, 0, 1, 0][$CellContext`By][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] - Derivative[
+    0, 1, 0, 0][$CellContext`Bz][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{
+       SuperscriptBox["Ez", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], "+", 
+     RowBox[{
+      SuperscriptBox["Bx", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "-", 
+     RowBox[{
+      SuperscriptBox["By", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -Derivative[
+      0, 0, 0, 1][$CellContext`Ez][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     0, 1, 0, 0][$CellContext`Bx][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] - Derivative[
+    1, 0, 0, 0][$CellContext`By][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`x, "", " ^ ", "d", $CellContext`y, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{
+      SuperscriptBox["Ey", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "0", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "+", 
+     RowBox[{
+      SuperscriptBox["Bx", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "-", 
+     RowBox[{
+      SuperscriptBox["Bz", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", Derivative[
+     0, 0, 0, 1][$CellContext`Ey][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] + 
+    Derivative[
+     0, 0, 1, 0][$CellContext`Bx][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] - Derivative[
+    1, 0, 0, 0][$CellContext`Bz][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", DifferentialForms`t, "", 
+    " ^ ", "d", $CellContext`x, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{
+       SuperscriptBox["Ez", 
+        TagBox[
+         RowBox[{"(", 
+          RowBox[{"0", ",", "0", ",", "1", ",", "0"}], ")"}],
+         Derivative],
+        MultilineFunction->None], "[", 
+       RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], "-", 
+     RowBox[{
+      SuperscriptBox["Ey", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "-", 
+     RowBox[{
+      SuperscriptBox["Ex", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}]}], 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -Derivative[
+      0, 0, 1, 0][$CellContext`Ez][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] - Derivative[
+    0, 1, 0, 0][$CellContext`Ey][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t] - Derivative[
+    1, 0, 0, 0][$CellContext`Ex][$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t], ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{3.970452929865623*^9, 3.970455951693181*^9, 
+  3.970456087382637*^9, 3.971249669775464*^9, 3.971250101064301*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"ee97d1ca-3fd2-46cd-973b-dbd5cc45b6a6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"HodgeStar", "[", 
+  RowBox[{
+   RowBox[{"d", "[", 
+    RowBox[{"x", ",", "y"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"t", "[", 
+      RowBox[{"x", ",", "x"}], "]"}], ",", 
+     RowBox[{"t", "[", 
+      RowBox[{"y", ",", "y"}], "]"}], ",", 
+     RowBox[{"t", "[", 
+      RowBox[{"z", ",", "z"}], "]"}], ",", 
+     RowBox[{"t", "[", 
+      RowBox[{"t", ",", "t"}], "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9704558244320297`*^9, 3.970455836477972*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"1821b127-7563-4a44-ab37-ce4b47086d44"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", "1", 
+   "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+   "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+   "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+   "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "(", 1, ") ", "d", DifferentialForms`t, "", " ^ ", "d", $CellContext`z, ""],
+  
+  Editable->False]], "Output",
+ CellChangeTimes->{3.9704558377906427`*^9, 3.970455951767568*^9, 
+  3.971249669794689*^9, 3.9712501011412497`*^9},
+ CellLabel->"Out[12]=",ExpressionUUID->"2b960f0c-104e-4887-bd2c-4d98a2935390"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"HodgeStar", "[", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "rho"}], " ", 
+      RowBox[{"d", "[", "t", "]"}]}], " ", "+", 
+     RowBox[{"jx", " ", 
+      RowBox[{"d", "[", "x", "]"}]}], "+", 
+     RowBox[{"jy", " ", 
+      RowBox[{"d", "[", "y", "]"}]}], "+", 
+     RowBox[{"jz", " ", 
+      RowBox[{"d", "[", "z", "]"}]}]}], ")"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"t", "[", 
+      RowBox[{"x", ",", "x"}], "]"}], ",", 
+     RowBox[{"t", "[", 
+      RowBox[{"y", ",", "y"}], "]"}], ",", 
+     RowBox[{"t", "[", 
+      RowBox[{"z", ",", "z"}], "]"}], ",", 
+     RowBox[{"t", "[", 
+      RowBox[{"t", ",", "t"}], "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9704558546044188`*^9, 3.97045589009184*^9}, {
+  3.970455973859116*^9, 3.9704559958426237`*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"d2c2af7b-c6bf-4823-91f8-aa3af0add8d7"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", "jx"}], "\[InvisibleSpace]", "\<\") \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "t", 
+    "\[InvisibleSpace]", "\<\"\"\>", "\[InvisibleSpace]", "\<\" ^ \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "y", 
+    "\[InvisibleSpace]", "\<\"\"\>", "\[InvisibleSpace]", "\<\" ^ \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "z", 
+    "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -$CellContext`jx, ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", "jy", 
+    "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+    "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+    "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", $CellContext`jy, ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`x, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", "jz"}], "\[InvisibleSpace]", "\<\") \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "t", 
+    "\[InvisibleSpace]", "\<\"\"\>", "\[InvisibleSpace]", "\<\" ^ \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "x", 
+    "\[InvisibleSpace]", "\<\"\"\>", "\[InvisibleSpace]", "\<\" ^ \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "y", 
+    "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -$CellContext`jz, ") ", "d", DifferentialForms`t, "", " ^ ", 
+    "d", $CellContext`x, "", " ^ ", "d", $CellContext`y, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{"-", "rho"}], "\[InvisibleSpace]", "\<\") \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "x", 
+    "\[InvisibleSpace]", "\<\"\"\>", "\[InvisibleSpace]", "\<\" ^ \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "y", 
+    "\[InvisibleSpace]", "\<\"\"\>", "\[InvisibleSpace]", "\<\" ^ \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "z", 
+    "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", -$CellContext`rho, ") ", "d", $CellContext`x, "", " ^ ", 
+    "d", $CellContext`y, "", " ^ ", "d", $CellContext`z, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{3.9704559972266693`*^9, 3.97124966989113*^9, 
+  3.971250101271812*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"17f62fde-9c55-4aa1-bbba-b3be5496c144"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ExteriorProduct", "[", 
+   RowBox[{"Fvec", ",", "StarFvec"}], "]"}], " ", "//", " ", 
+  "Simplify"}]], "Input",
+ CellChangeTimes->{{3.971249660285738*^9, 3.9712496927644*^9}, {
+  3.9712497669612083`*^9, 3.971249774788272*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"7bf58d1f-5cd7-4c4e-a8eb-3edcb669bd5b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"Bx", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "2"], "+", 
+    SuperscriptBox[
+     RowBox[{"By", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "2"], "+", 
+    SuperscriptBox[
+     RowBox[{"Bz", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "2"], "-", 
+    SuperscriptBox[
+     RowBox[{"Ex", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "2"], "-", 
+    SuperscriptBox[
+     RowBox[{"Ey", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "2"], "-", 
+    SuperscriptBox[
+     RowBox[{"Ez", "[", 
+      RowBox[{"x", ",", "y", ",", "z", ",", "t"}], "]"}], "2"]}], 
+   "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+   "\[InvisibleSpace]", "t", "\[InvisibleSpace]", "\<\"\"\>", 
+   "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+   "\[InvisibleSpace]", "x", "\[InvisibleSpace]", "\<\"\"\>", 
+   "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+   "\[InvisibleSpace]", "y", "\[InvisibleSpace]", "\<\"\"\>", 
+   "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+   "\[InvisibleSpace]", "z", "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "(", $CellContext`Bx[$CellContext`x, $CellContext`y, $CellContext`z, 
+      DifferentialForms`t]^2 + $CellContext`By[$CellContext`x, \
+$CellContext`y, $CellContext`z, 
+      DifferentialForms`t]^2 + $CellContext`Bz[$CellContext`x, \
+$CellContext`y, $CellContext`z, 
+      DifferentialForms`t]^2 - $CellContext`Ex[$CellContext`x, \
+$CellContext`y, $CellContext`z, 
+     DifferentialForms`t]^2 - $CellContext`Ey[$CellContext`x, $CellContext`y, \
+$CellContext`z, 
+     DifferentialForms`t]^2 - $CellContext`Ez[$CellContext`x, $CellContext`y, \
+$CellContext`z, DifferentialForms`t]^2, ") ", "d", DifferentialForms`t, "", 
+   " ^ ", "d", $CellContext`x, "", " ^ ", "d", $CellContext`y, "", " ^ ", 
+   "d", $CellContext`z, ""],
+  Editable->False]], "Output",
+ CellChangeTimes->{3.971249693293095*^9, 3.971249775706399*^9, 
+  3.971250101424218*^9},
+ CellLabel->"Out[14]=",ExpressionUUID->"4b58f7b5-5193-4b20-a528-e9c45a0edae8"]
+}, Open  ]]
+},
+WindowSize->{808, 699},
+WindowMargins->{{Automatic, 23}, {Automatic, 24}},
+FrontEndVersion->"12.2 for Mac OS X x86 (64-bit) (December 12, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"885908d9-26e0-45ce-965b-0c422e2f0d0d"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 200, 4, 30, "Input",ExpressionUUID->"3ac40910-cd06-46c2-a575-1e95b7c60792"],
+Cell[783, 28, 612, 12, 24, "Message",ExpressionUUID->"57d27e9b-17ec-4769-be8d-4674103464d6"],
+Cell[1398, 42, 934, 16, 24, "Message",ExpressionUUID->"0bcfeaed-7064-482e-ae1a-81bce3d281a7"],
+Cell[2335, 60, 941, 17, 24, "Message",ExpressionUUID->"885ede78-d05a-44f0-8b70-e1f9d2be256a"],
+Cell[3279, 79, 621, 12, 24, "Message",ExpressionUUID->"c484c109-bfee-4b1c-8624-b77d59072029"],
+Cell[CellGroupData[{
+Cell[3925, 95, 403, 7, 24, "Print",ExpressionUUID->"5970ed5f-7164-4698-bcd2-b30a5d2cfea6"],
+Cell[4331, 104, 404, 7, 24, "Print",ExpressionUUID->"5fb3c79e-2ba0-4158-a871-239385f5652d"],
+Cell[4738, 113, 392, 6, 24, "Print",ExpressionUUID->"5db59a49-4840-43aa-afc3-0211aaed3eaa"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5179, 125, 864, 21, 30, "Input",ExpressionUUID->"8a077cef-3d55-4238-90bb-a25cc8c9dd71"],
+Cell[6046, 148, 2218, 45, 34, "Output",ExpressionUUID->"d964eeca-f9b0-407a-9201-bd5c6fab86cd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8301, 198, 747, 18, 30, "Input",ExpressionUUID->"04cda948-819e-49b7-9bee-4f21b0248baa"],
+Cell[9051, 218, 1661, 35, 34, "Output",ExpressionUUID->"c203b110-f4f6-44ba-8b1e-b004fbbff7d8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10749, 258, 587, 12, 30, "Input",ExpressionUUID->"008af05a-40ec-4874-847b-6eaaa85ba05e"],
+Cell[11339, 272, 4345, 88, 56, "Output",ExpressionUUID->"d9822e0d-6e17-4c09-8399-836369f3dc1e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15721, 365, 331, 6, 30, "Input",ExpressionUUID->"8724b461-e412-4163-b5d9-e845e217621e"],
+Cell[16055, 373, 5107, 116, 77, "Output",ExpressionUUID->"f3c9d567-9bc8-432d-8881-73bf4fefd266"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21199, 494, 348, 7, 30, "Input",ExpressionUUID->"eb89bff2-7e08-4461-bb4b-b0a094f86071"],
+Cell[21550, 503, 4604, 109, 77, "Output",ExpressionUUID->"b31cd729-97c6-4e96-99a6-70a322b25006"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26191, 617, 270, 5, 30, "Input",ExpressionUUID->"b314ba9a-c716-4a72-b0d0-cf2a491caf40"],
+Cell[26464, 624, 7492, 182, 98, "Output",ExpressionUUID->"45599cbd-0838-42f1-87af-7c5e0d966e8e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[33993, 811, 1219, 34, 52, "Input",ExpressionUUID->"c27f2a28-b495-439b-96b8-1fde73f0a2cb"],
+Cell[35215, 847, 4125, 83, 56, "Output",ExpressionUUID->"3b751ee1-5d57-4f59-9631-e0b57a5895f4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39377, 935, 286, 5, 30, "Input",ExpressionUUID->"c67f5784-6563-43f5-926b-7433c136a0be"],
+Cell[39666, 942, 7494, 182, 98, "Output",ExpressionUUID->"5fbe5e87-23d2-4a75-8547-22f4817222b6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[47197, 1129, 692, 18, 30, "Input",ExpressionUUID->"33871108-628e-4ec7-888b-ad7d819df8db"],
+Cell[47892, 1149, 2923, 54, 34, "Output",ExpressionUUID->"47860f0e-d314-45f2-b095-9ba95c933d88"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[50852, 1208, 673, 17, 30, "Input",ExpressionUUID->"7dfe0829-abe3-4521-85fc-823d91b8b477"],
+Cell[51528, 1227, 7540, 182, 98, "Output",ExpressionUUID->"ee97d1ca-3fd2-46cd-973b-dbd5cc45b6a6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59105, 1414, 587, 16, 30, "Input",ExpressionUUID->"1821b127-7563-4a44-ab37-ce4b47086d44"],
+Cell[59695, 1432, 680, 13, 34, "Output",ExpressionUUID->"2b960f0c-104e-4887-bd2c-4d98a2935390"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[60412, 1450, 916, 26, 30, "Input",ExpressionUUID->"d2c2af7b-c6bf-4823-91f8-aa3af0add8d7"],
+Cell[61331, 1478, 2919, 55, 34, "Output",ExpressionUUID->"17f62fde-9c55-4aa1-bbba-b3be5496c144"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[64287, 1538, 340, 7, 30, "Input",ExpressionUUID->"7bf58d1f-5cd7-4c4e-a8eb-3edcb669bd5b"],
+Cell[64630, 1547, 2264, 47, 56, "Output",ExpressionUUID->"4b58f7b5-5193-4b20-a528-e9c45a0edae8"]
+}, Open  ]]
+}
+]
+*)
+
