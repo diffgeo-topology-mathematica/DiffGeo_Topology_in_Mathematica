@@ -1,0 +1,483 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17276,        474]
+NotebookOptionsPosition[     14533,        421]
+NotebookOutlinePosition[     15158,        443]
+CellTagsIndexPosition[     15115,        440]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Point", " ", "to", " ", "the", " ", "RGTC", " ", "package", " ", "folder",
+     " ", "and", " ", "load", " ", "EDCRGTCcode"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"SetDirectory", "[", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+      "\"\</Packages/RGTC/\>\""}], "]"}], ";"}], "\n", 
+   RowBox[{"Get", "[", "\"\<EDCRGTCcode.m\>\"", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.88901655035703*^9, 3.88901655327559*^9}, {
+   3.919769108829173*^9, 3.9197691111671963`*^9}, 3.9645740385017767`*^9, {
+   3.993520602402616*^9, 3.993520603902269*^9}},
+ CellLabel->"In[1]:="],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SetDelayed", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"Classify\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"Classify\\\", \\\"[\\\", \\\"x_\\\", \\\"]\\\"}]\\) is \
+Protected.\"", 2, 0, 1, 23092904928677591518, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.8890165589424925`*^9, 3.8891849114156427`*^9, {3.9197691049843874`*^9, 
+   3.919769121059918*^9}, 3.919783489513714*^9, 3.964574041846116*^9, 
+   3.9935206050188303`*^9},
+ CellLabel->"During evaluation of In[1]:="]
+}, Open  ]],
+
+Cell["We begin by defining the coordinates and the metric:", "Text",
+ CellChangeTimes->{{3.919769357977271*^9, 3.919769374011907*^9}, {
+  3.964573987718045*^9, 3.9645739883578243`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Coordinates", " ", 
+     RowBox[{"(", 
+      RowBox[{"r", ",", "theta"}], ")"}], " ", "and", " ", "the", " ", 
+     "metric", " ", "diag", 
+     RowBox[{"(", 
+      RowBox[{"1", ",", " ", 
+       RowBox[{
+        RowBox[{"sin", "^", "2"}], " ", "theta"}]}], ")"}]}], ";", " ", 
+    RowBox[{
+    "this", " ", "2", "D", " ", "metric", " ", "is", " ", "in", " ", "fact", 
+     " ", "FLAT", " ", 
+     RowBox[{"(", 
+      RowBox[{"scalar", " ", "curvature", " ", "0"}], ")"}]}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"coordinates", "=", 
+     RowBox[{"{", 
+      RowBox[{"r", ",", " ", "\[Theta]"}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Metric", "=", 
+     RowBox[{"DiagonalMatrix", "[", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", " ", 
+        SuperscriptBox[
+         RowBox[{"Sin", "[", "\[Theta]", "]"}], "2"]}], "}"}], "]"}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"n", "=", 
+     RowBox[{"Length", "[", "coordinates", "]"}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.889016564662817*^9, 3.8890166344400463`*^9}, {
+  3.8890173772025833`*^9, 3.8890174000714397`*^9}, {3.919769089451931*^9, 
+  3.9197690913279085`*^9}, {3.919770491471999*^9, 3.919770505808566*^9}, {
+  3.919770847465234*^9, 3.9197708571008496`*^9}},
+ CellLabel->"In[1]:="],
+
+Cell["\<\
+Apply the RGTC code to obtain the tensors that define the curvature:\
+\>", "Text",
+ CellChangeTimes->{{3.9197693791525087`*^9, 3.9197694077353673`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Compute", " ", "the", " ", "curvature", " ", "tensors"}], ";", 
+     " ", 
+     RowBox[{"the", " ", "curvature", " ", "vanishes"}]}], ",", " ", 
+    RowBox[{"confirming", " ", "flat", " ", "space"}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"RGtensors", "[", 
+   RowBox[{"Metric", ",", " ", "coordinates"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.8890166384322977`*^9, 3.889016659006056*^9}},
+ CellLabel->"In[4]:="],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"gdd = \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {"1", "0"},
+       {"0", 
+        SuperscriptBox[
+         RowBox[{"Sin", "[", "\[Theta]", "]"}], "2"]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]]}],
+  SequenceForm["gdd = ", 
+   MatrixForm[{{1, 0}, {0, Sin[$CellContext`\[Theta]]^2}}]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.889016659250046*^9, 3.8890174030126686`*^9, 
+  3.8891849116287007`*^9, 3.919769127120014*^9, 3.9197705133643913`*^9, 
+  3.919783489645587*^9, 3.964574042032544*^9},
+ CellLabel->"During evaluation of In[4]:="],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"LineElement = \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"d", "[", "r", "]"}], "2"], "+", 
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"d", "[", "\[Theta]", "]"}], "2"], " ", 
+      SuperscriptBox[
+       RowBox[{"Sin", "[", "\[Theta]", "]"}], "2"]}]}],
+    Short[#, 16]& ]}],
+  SequenceForm["LineElement = ", 
+   Short[$CellContext`d[$CellContext`r]^2 + $CellContext`d[$CellContext`\
+\[Theta]]^2 Sin[$CellContext`\[Theta]]^2, 16]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.889016659250046*^9, 3.8890174030126686`*^9, 
+  3.8891849116287007`*^9, 3.919769127120014*^9, 3.9197705133643913`*^9, 
+  3.919783489645587*^9, 3.964574042034585*^9},
+ CellLabel->"During evaluation of In[4]:="],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"gUU = \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {"1", "0"},
+       {"0", 
+        SuperscriptBox[
+         RowBox[{"Csc", "[", "\[Theta]", "]"}], "2"]}
+      },
+      GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]]}],
+  SequenceForm["gUU = ", 
+   MatrixForm[{{1, 0}, {0, Csc[$CellContext`\[Theta]]^2}}]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.889016659250046*^9, 3.8890174030126686`*^9, 
+  3.8891849116287007`*^9, 3.919769127120014*^9, 3.9197705133643913`*^9, 
+  3.919783489645587*^9, 3.964574042036602*^9},
+ CellLabel->"During evaluation of In[4]:="],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"gUU computed in \"\>", "\[InvisibleSpace]", 
+   "0.0014159999999998618`", "\[InvisibleSpace]", "\<\" sec\"\>"}],
+  SequenceForm["gUU computed in ", 0.0014159999999998618`, " sec"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.889016659250046*^9, 3.8890174030126686`*^9, 
+  3.8891849116287007`*^9, 3.919769127120014*^9, 3.9197705133643913`*^9, 
+  3.919783489645587*^9, 3.964574042037693*^9},
+ CellLabel->"During evaluation of In[4]:="],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Gamma computed in \"\>", "\[InvisibleSpace]", 
+   "0.0002409999999999357`", "\[InvisibleSpace]", "\<\" sec\"\>"}],
+  SequenceForm["Gamma computed in ", 0.0002409999999999357, " sec"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.889016659250046*^9, 3.8890174030126686`*^9, 
+  3.8891849116287007`*^9, 3.919769127120014*^9, 3.9197705133643913`*^9, 
+  3.919783489645587*^9, 3.964574042038807*^9},
+ CellLabel->"During evaluation of In[4]:="],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Riemann(dddd) computed in \"\>", "\[InvisibleSpace]", 
+   "0.00009200000000042508`", "\[InvisibleSpace]", "\<\" sec\"\>"}],
+  SequenceForm["Riemann(dddd) computed in ", 0.00009200000000042508, " sec"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.889016659250046*^9, 3.8890174030126686`*^9, 
+  3.8891849116287007`*^9, 3.919769127120014*^9, 3.9197705133643913`*^9, 
+  3.919783489645587*^9, 3.964574042039741*^9},
+ CellLabel->"During evaluation of In[4]:="],
+
+Cell[BoxData[
+ StyleBox["\<\"Flat Space!\"\>",
+  StripOnInput->False,
+  FontSize->20,
+  FontWeight->"Bold",
+  FontColor->RGBColor[1, 0, 1]]], "Print",
+ CellChangeTimes->{3.889016659250046*^9, 3.8890174030126686`*^9, 
+  3.8891849116287007`*^9, 3.919769127120014*^9, 3.9197705133643913`*^9, 
+  3.919783489645587*^9, 3.964574042040803*^9},
+ CellLabel->"During evaluation of In[4]:="],
+
+Cell[BoxData["\<\"Aborted after 0.005046 seconds\"\>"], "Print",
+ CellChangeTimes->{3.889016659250046*^9, 3.8890174030126686`*^9, 
+  3.8891849116287007`*^9, 3.919769127120014*^9, 3.9197705133643913`*^9, 
+  3.919783489645587*^9, 3.964574042041686*^9},
+ CellLabel->"During evaluation of In[4]:="]
+}, Open  ]]
+}, Open  ]],
+
+Cell["\<\
+Let us now consider the coordinates as functions of an affine parameter \
+\[Lambda]\
+\>", "Text",
+ CellChangeTimes->{{3.9197706691344357`*^9, 3.9197707047856445`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Coordinates", " ", "as", " ", "functions", " ", "of", " ", "an", " ", 
+    "affine", " ", "parameter", " ", "lambda"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"CoordFunctions", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"r", "[", "\[Lambda]", "]"}], ",", " ", 
+       RowBox[{"\[Theta]", "[", "\[Lambda]", "]"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Mapping", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"coordinates", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], "->", 
+       RowBox[{"CoordFunctions", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "n"}], "}"}]}], "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.919770708582662*^9, 3.9197707284010468`*^9}, {
+  3.9197707802936335`*^9, 3.919770783156931*^9}, {3.91977098268478*^9, 
+  3.9197710106706395`*^9}},
+ CellLabel->"In[5]:="],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"r", "\[Rule]", 
+    RowBox[{"r", "[", "\[Lambda]", "]"}]}], ",", 
+   RowBox[{"\[Theta]", "\[Rule]", 
+    RowBox[{"\[Theta]", "[", "\[Lambda]", "]"}]}]}], "}"}]], "Output",
+ CellChangeTimes->{3.919771011608674*^9, 3.9197710674743876`*^9, 
+  3.919783489688215*^9, 3.964574042058549*^9},
+ CellLabel->"Out[6]="]
+}, Open  ]],
+
+Cell["\<\
+To obtain the equation for a geodesic, we need to have the Christoffel symbols\
+\>", "Text",
+ CellChangeTimes->{{3.9197705304458303`*^9, 3.919770564119971*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"The", " ", "Christoffel", " ", "symbols", " ", 
+    RowBox[{"Gamma", "^", "i_jk"}]}], "*)"}], "\[IndentingNewLine]", 
+  "GUdd"}]], "Input",
+ CellChangeTimes->{{3.9197705664867125`*^9, 3.9197706146468353`*^9}},
+ CellLabel->"In[7]:="],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"Cot", "[", "\[Theta]", "]"}]}], "}"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.919770567673117*^9, 3.919770583256332*^9}, 
+   3.9197706157015867`*^9, 3.9197707314772377`*^9, 3.919783489703974*^9, 
+   3.964574042076891*^9},
+ CellLabel->"Out[7]="]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Geodesic", " ", "equations", " ", "from", " ", "the", " ", "Christoffel", 
+    " ", "symbols"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"GeodesicEqns", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"D", "[", " ", 
+        RowBox[{
+         RowBox[{"CoordFunctions", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"\[Lambda]", ",", " ", "2"}], "}"}]}], "]"}], "+", 
+       RowBox[{"Sum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"GUdd", "[", 
+             RowBox[{"[", 
+              RowBox[{"i", ",", " ", "j", ",", " ", "k"}], "]"}], "]"}], "/.",
+             "Mapping"}], ")"}], 
+          RowBox[{"D", "[", 
+           RowBox[{
+            RowBox[{"CoordFunctions", "[", 
+             RowBox[{"[", "j", "]"}], "]"}], ",", "\[Lambda]"}], "]"}], 
+          RowBox[{"D", "[", 
+           RowBox[{
+            RowBox[{"CoordFunctions", "[", 
+             RowBox[{"[", "k", "]"}], "]"}], ",", " ", "\[Lambda]"}], "]"}]}],
+          ",", 
+         RowBox[{"{", 
+          RowBox[{"j", ",", " ", "n"}], "}"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"k", ",", " ", "n"}], "}"}]}], "]"}]}], "==", "0"}], " ", 
+     ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", " ", "n"}], "}"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.9197706256537776`*^9, 3.919770659960559*^9}, {
+  3.919770735552476*^9, 3.919770915513669*^9}, {3.9197709779195843`*^9, 
+  3.9197709781233096`*^9}, {3.9197710160756025`*^9, 3.9197710780776844`*^9}, {
+  3.9197834812378864`*^9, 3.9197834855182223`*^9}},
+ CellLabel->"In[8]:="],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     SuperscriptBox["r", "\[Prime]\[Prime]",
+      MultilineFunction->None], "[", "\[Lambda]", "]"}], "\[Equal]", "0"}], 
+   ",", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"Cot", "[", 
+       RowBox[{"\[Theta]", "[", "\[Lambda]", "]"}], "]"}], " ", 
+      SuperscriptBox[
+       RowBox[{
+        SuperscriptBox["\[Theta]", "\[Prime]",
+         MultilineFunction->None], "[", "\[Lambda]", "]"}], "2"]}], "+", 
+     RowBox[{
+      SuperscriptBox["\[Theta]", "\[Prime]\[Prime]",
+       MultilineFunction->None], "[", "\[Lambda]", "]"}]}], "\[Equal]", 
+    "0"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.9197706502304325`*^9, 3.9197706603966866`*^9}, {
+   3.9197707583364687`*^9, 3.919770791921111*^9}, {3.919770888429084*^9, 
+   3.9197709160607386`*^9}, 3.9197710175578055`*^9, {3.919771058166957*^9, 
+   3.9197710788930187`*^9}, 3.919783489716565*^9, 3.964574042095846*^9},
+ CellLabel->"Out[8]="]
+}, Open  ]]
+},
+WindowSize->{1269., 721.5},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
+CellContext->Notebook,
+FrontEndVersion->"12.3 for Linux x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell[
+    StyleData["Text"], FontColor -> RGBColor[1, 0, 0]]}, Visible -> False, 
+  FrontEndVersion -> "12.3 for Linux x86 (64-bit) (May 11, 2021)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 681, 17, 70, "Input",ExpressionUUID->"cfc9d01f-e9aa-40b4-9692-fbd0b795ffe3"],
+Cell[1264, 41, 522, 11, 70, "Message",ExpressionUUID->"19d7ca23-726a-43f7-bd39-d1599a15dcfa"]
+}, Open  ]],
+Cell[1801, 55, 185, 2, 70, "Text",ExpressionUUID->"cee32ef5-9e6c-4673-8641-bc3196d1fadb"],
+Cell[1989, 59, 1398, 39, 70, "Input",ExpressionUUID->"e66cbf7f-4a47-433f-a4ca-30c3b3a21f5e"],
+Cell[3390, 100, 162, 3, 70, "Text",ExpressionUUID->"bd852443-1706-4d21-8dcf-b1c59184fb26"],
+Cell[CellGroupData[{
+Cell[3577, 107, 503, 13, 70, "Input",ExpressionUUID->"fa6df866-15b2-4fa6-8f0a-afa8f97ce9f1"],
+Cell[CellGroupData[{
+Cell[4105, 124, 994, 26, 70, "Print",ExpressionUUID->"8cd5a531-9723-4211-9ec0-74d575b55a08"],
+Cell[5102, 152, 793, 20, 70, "Print",ExpressionUUID->"5406a523-ae33-4d5e-a205-93b967709c32"],
+Cell[5898, 174, 994, 26, 70, "Print",ExpressionUUID->"765dbeb1-65e4-4d22-b8ce-9007a3358ba6"],
+Cell[6895, 202, 489, 9, 70, "Print",ExpressionUUID->"6b7c244b-fbc3-49e5-b95c-ddb8f4cdd019"],
+Cell[7387, 213, 492, 9, 70, "Print",ExpressionUUID->"877403e7-0d62-43d6-bb03-9ac4f09aed5b"],
+Cell[7882, 224, 510, 9, 70, "Print",ExpressionUUID->"57f28aa2-042c-45be-b25d-1b3344975919"],
+Cell[8395, 235, 380, 9, 70, "Print",ExpressionUUID->"5a00097b-af09-4ea0-b78b-baa5382c8dc5"],
+Cell[8778, 246, 294, 4, 70, "Print",ExpressionUUID->"e9045425-a26a-455e-bbc4-e66daa065028"]
+}, Open  ]]
+}, Open  ]],
+Cell[9099, 254, 177, 4, 70, "Text",ExpressionUUID->"89c0ba71-b9b3-41c6-b751-0076607f7a72"],
+Cell[CellGroupData[{
+Cell[9301, 262, 993, 28, 70, "Input",ExpressionUUID->"6e1eac77-daf3-49bc-96be-34c52a16176c"],
+Cell[10297, 292, 359, 9, 70, "Output",ExpressionUUID->"8493289d-b2db-4222-a380-09dea8a4fd69"]
+}, Open  ]],
+Cell[10671, 304, 170, 3, 70, "Text",ExpressionUUID->"b9c1a3e9-51c4-4b59-9512-22c2778aac14"],
+Cell[CellGroupData[{
+Cell[10866, 311, 285, 7, 70, "Input",ExpressionUUID->"22847820-c9e9-44db-aef1-58fda392ca3e"],
+Cell[11154, 320, 617, 20, 70, "Output",ExpressionUUID->"0f0aff97-67a9-4f79-9645-bb460c7f62e8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11808, 345, 1733, 46, 70, "Input",ExpressionUUID->"2622d1f4-26dd-406a-8532-e29bcce36d3d"],
+Cell[13544, 393, 973, 25, 70, "Output",ExpressionUUID->"02d85721-6478-4dc7-881a-205bb4da67dc"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -1,0 +1,397 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14796,        388]
+NotebookOptionsPosition[     12902,        350]
+NotebookOutlinePosition[     13267,        365]
+CellTagsIndexPosition[     13224,        362]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+  "This", " ", "notebook", " ", "calculates", " ", "the", " ", "hodge", " ", 
+   "star", " ", "of", " ", "a", " ", "given", " ", "form"}], "*)"}]], "Input",\
+
+ CellChangeTimes->{{3.992421433551506*^9, 3.992421454638616*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Point", " ", "Mathematica", " ", "at", " ", "the", " ", "Packages", " ", 
+    "subfolder", " ", "so", " ", "the", " ", "DifferentialForms", " ", 
+    "package", " ", "can", " ", "be", " ", "loaded", " ", "on", " ", "the", 
+    " ", "next", " ", "line"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\</Packages/\>\""}], 
+   "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Load", " ", 
+     RowBox[{"Zizza", "'"}], "s", " ", "DifferentialForms", " ", 
+     RowBox[{"package", ":", " ", 
+      RowBox[{
+       RowBox[{"it", " ", "supplies", " ", "exterior"}], "-", 
+       RowBox[{
+       "algebra", " ", "tools", " ", "such", " ", "as", " ", "d", " ", "for", 
+        " ", "the", " ", "wedge", " ", "product"}]}]}]}], ",", " ", 
+    RowBox[{"t", " ", "for", " ", "metric", " ", "tensor", " ", "factors"}], 
+    ",", " ", 
+    RowBox[{"and", " ", "HodgeStar"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"<<", "DifferentialForms`"}], "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.9708252224520206`*^9, 3.9708252768986187`*^9}},
+ CellLabel->"In[1]:="],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SetDelayed", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"TensorProduct\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"TensorProduct\\\", \\\"[\\\", \\\"single_\\\", \
+\\\"]\\\"}]\\) is Protected.\"", 2, 1, 1, 28776386072971096938, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.970825277479251*^9, 3.97082530012293*^9}, 
+   3.970826175966137*^9},
+ CellLabel->"During evaluation of In[1]:="],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SetDelayed", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"TensorProduct\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"vec\\\", \\\"[\\\", RowBox[{\\\"a_\\\", \
+\\\",\\\", RowBox[{\\\"x\\\", \\\":\\\", RowBox[{\\\"{\\\", \\\"__\\\", \\\"}\
+\\\"}]}]}], \\\"]\\\"}], \\\"\[TensorProduct]\\\", RowBox[{\\\"vec\\\", \\\"[\
+\\\", RowBox[{\\\"b_\\\", \\\",\\\", RowBox[{\\\"y\\\", \\\":\\\", RowBox[{\\\
+\"{\\\", \\\"__\\\", \\\"}\\\"}]}]}], \\\"]\\\"}], \\\"\[TensorProduct]\\\", \
+\\\"C___\\\"}]\\) is Protected.\"", 2, 1, 2, 28776386072971096938, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.970825277479251*^9, 3.97082530012293*^9}, 
+   3.9708261760083723`*^9},
+ CellLabel->"During evaluation of In[1]:="],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SetDelayed", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"TensorProduct\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"head1_\\\", \\\"[\\\", RowBox[{\\\"a_\\\", \\\",\
+\\\", RowBox[{\\\"x\\\", \\\":\\\", RowBox[{\\\"{\\\", \\\"__\\\", \
+\\\"}\\\"}]}]}], \\\"]\\\"}], \\\"\[TensorProduct]\\\", \
+RowBox[{\\\"head2_\\\", \\\"[\\\", RowBox[{\\\"b_\\\", \\\",\\\", \
+RowBox[{\\\"y\\\", \\\":\\\", RowBox[{\\\"{\\\", \\\"__\\\", \\\"}\\\"}]}]}], \
+\\\"]\\\"}], \\\"\[TensorProduct]\\\", \\\"C___\\\"}]\\) is Protected.\"", 2, 
+   1, 3, 28776386072971096938, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.970825277479251*^9, 3.97082530012293*^9}, 
+   3.970826176014411*^9},
+ CellLabel->"During evaluation of In[1]:="],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General", "stop", 
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"SetDelayed\\\", \
+\\\"::\\\", \\\"write\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
+during this calculation.\"", 2, 1, 4, 28776386072971096938, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.970825277479251*^9, 3.97082530012293*^9}, 
+   3.970826176019969*^9},
+ CellLabel->"During evaluation of In[1]:="],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Differential Forms package Version 4.0 by Frank \
+Zizza\"\>"], "Print",
+ CellChangeTimes->{{3.970825277572508*^9, 3.970825300211328*^9}, 
+   3.970826176027141*^9},
+ CellLabel->"During evaluation of In[1]:="],
+
+Cell[BoxData["\<\"with additions by Ulrich Jentschura.  For information \
+\"\>"], "Print",
+ CellChangeTimes->{{3.970825277572508*^9, 3.970825300211328*^9}, 
+   3.97082617602896*^9},
+ CellLabel->"During evaluation of In[1]:="],
+
+Cell[BoxData["\<\"about functions, Type ?DifferentialForms .\"\>"], "Print",
+ CellChangeTimes->{{3.970825277572508*^9, 3.970825300211328*^9}, 
+   3.970826176032402*^9},
+ CellLabel->"During evaluation of In[1]:="]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Define", " ", "lambda", " ", "as", " ", "the", " ", "top"}], 
+     "-", 
+     RowBox[{"degree", " ", "volume", " ", "3"}], "-", 
+     RowBox[{
+     "form", " ", "dx1", " ", "wedge", " ", "dx2", " ", "wedge", " ", "dx3", 
+      " ", "on", " ", 
+      RowBox[{"R", "^", "3"}]}]}], ";", " ", 
+    RowBox[{
+     RowBox[{"d", "[", 
+      RowBox[{"x1", ",", "x2", ",", "x3"}], "]"}], " ", "denotes", " ", "the",
+      " ", "exterior", " ", "product", " ", "of", " ", "the", " ", "three", 
+     " ", "coordinate", " ", "differentials"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"\[Lambda]", "=", 
+   RowBox[{"d", "[", 
+    RowBox[{"x1", ",", "x2", ",", "x3"}], "]"}]}]}]], "Input",
+ CellLabel->"In[2]:="],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", "1", 
+   "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+   "\[InvisibleSpace]", "x1", "\[InvisibleSpace]", "\<\"\"\>", 
+   "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+   "\[InvisibleSpace]", "x2", "\[InvisibleSpace]", "\<\"\"\>", 
+   "\[InvisibleSpace]", "\<\" ^ \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+   "\[InvisibleSpace]", "x3", "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm[
+  "(", 1, ") ", "d", $CellContext`x1, "", " ^ ", "d", $CellContext`x2, "", 
+   " ^ ", "d", $CellContext`x3, ""],
+  Editable->False]], "Output",
+ CellChangeTimes->{{3.970825284589128*^9, 3.97082530031494*^9}, 
+   3.970826176172022*^9},
+ CellLabel->"Out[2]="]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "Hodge", " ", "star", " ", "of", " ", "the", " ", "coordinate", " ", 
+      "2"}], "-", 
+     RowBox[{
+     "form", " ", "dx2", " ", "wedge", " ", "dx3", " ", "with", " ", 
+      "respect", " ", "to", " ", "the", " ", "flat", " ", "Euclidean", " ", 
+      "metric", " ", "of", " ", 
+      RowBox[{"R", "^", "3"}], " ", "given", " ", "by", " ", "its", " ", 
+      "diagonal", " ", "components", " ", 
+      RowBox[{"t", "[", 
+       RowBox[{"xi", ",", "xi"}], "]"}]}]}], ";", " ", 
+    RowBox[{
+     RowBox[{
+     "the", " ", "dual", " ", "is", " ", "the", " ", "complementary", " ", 
+      "1"}], "-", 
+     RowBox[{"form", " ", "dx1"}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"Stardx1", "=", 
+   RowBox[{"HodgeStar", "[", 
+    RowBox[{
+     RowBox[{"d", "[", 
+      RowBox[{"x2", ",", "x3"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"t", "[", 
+        RowBox[{"x1", ",", "x1"}], "]"}], ",", 
+       RowBox[{"t", "[", 
+        RowBox[{"x2", ",", "x2"}], "]"}], ",", 
+       RowBox[{"t", "[", 
+        RowBox[{"x3", ",", "x3"}], "]"}]}], "}"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.970825625995315*^9, 3.9708256665102663`*^9}, {
+  3.9708259114980803`*^9, 3.9708259258485327`*^9}},
+ CellLabel->"In[4]:="],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", "1", 
+   "\[InvisibleSpace]", "\<\") \"\>", "\[InvisibleSpace]", "\<\"d\"\>", 
+   "\[InvisibleSpace]", "x1", "\[InvisibleSpace]", "\<\"\"\>"}],
+  SequenceForm["(", 1, ") ", "d", $CellContext`x1, ""],
+  Editable->False]], "Output",
+ CellChangeTimes->{
+  3.970825668065269*^9, {3.9708259173775682`*^9, 3.9708259270548964`*^9}, 
+   3.970826186797638*^9},
+ CellLabel->"Out[4]="]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Hodge", " ", "star", " ", "of", " ", "a", " ", "general", " ", "2"}], 
+      "-", 
+      RowBox[{
+      "form", " ", "assembled", " ", "from", " ", "two", " ", "vectors", " ", 
+       "v", " ", "and", " ", "w", " ", 
+       RowBox[{"(", 
+        RowBox[{
+        "coefficients", " ", "vi", " ", "wj", " ", "on", " ", "dxi", " ", 
+         "wedge", " ", "dxj"}], ")"}], " ", "under", " ", "the", " ", 
+       "Euclidean", " ", "metric"}]}], ";", " ", 
+     RowBox[{
+      RowBox[{"the", " ", "result", " ", "is", " ", "the", " ", "1"}], "-", 
+      RowBox[{
+      "form", " ", "dual", " ", "to", " ", "the", " ", "cross", " ", 
+       "product", " ", "v", " ", "x", " ", "w"}]}]}], ",", " ", 
+    RowBox[{
+     RowBox[{"namely", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"v1", " ", "w2"}], " ", "-", " ", 
+        RowBox[{"v2", " ", "w1"}]}], ")"}], " ", "dx3"}], " ", "+", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"v3", " ", "w1"}], " ", "-", " ", 
+        RowBox[{"v1", " ", "w3"}]}], ")"}], " ", "dx2"}], " ", "+", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"v2", " ", "w3"}], " ", "-", " ", 
+        RowBox[{"v3", " ", "w2"}]}], ")"}], " ", "dx1"}]}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"HodgeStar", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"v1", " ", "w2", " ", 
+      RowBox[{"d", "[", 
+       RowBox[{"x1", ",", "x2"}], "]"}]}], "+", " ", 
+     RowBox[{"v2", " ", "w1", " ", 
+      RowBox[{"d", "[", 
+       RowBox[{"x2", ",", "x1"}], "]"}]}], "+", 
+     RowBox[{"v1", " ", "w3", " ", 
+      RowBox[{"d", "[", 
+       RowBox[{"x1", ",", "x3"}], "]"}]}], "+", " ", 
+     RowBox[{"v3", " ", "w1", " ", 
+      RowBox[{"d", "[", 
+       RowBox[{"x3", ",", "x1"}], "]"}]}], "+", " ", 
+     RowBox[{"v2", " ", "w3", " ", 
+      RowBox[{"d", "[", 
+       RowBox[{"x2", ",", "x3"}], "]"}]}], "+", 
+     RowBox[{"v3", " ", "w2", " ", 
+      RowBox[{"d", "[", 
+       RowBox[{"x3", ",", "x2"}], "]"}]}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"t", "[", 
+       RowBox[{"x1", ",", "x1"}], "]"}], ",", 
+      RowBox[{"t", "[", 
+       RowBox[{"x2", ",", "x2"}], "]"}], ",", 
+      RowBox[{"t", "[", 
+       RowBox[{"x3", ",", "x3"}], "]"}]}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.970825449169742*^9, 3.970825452233636*^9}, {
+  3.97082549698272*^9, 3.970825537353141*^9}, {3.970825702016446*^9, 
+  3.970825715689455*^9}, {3.970826219938038*^9, 3.9708262921390047`*^9}},
+ CellLabel->"In[6]:="],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "v2"}], " ", "w1"}], "+", 
+     RowBox[{"v1", " ", "w2"}]}], "\[InvisibleSpace]", "\<\") \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "x3", 
+    "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", (-$CellContext`v2) $CellContext`w1 + $CellContext`v1 $CellContext`w2, 
+    ") ", "d", $CellContext`x3, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{"v3", " ", "w1"}], "-", 
+     RowBox[{"v1", " ", "w3"}]}], "\[InvisibleSpace]", "\<\") \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "x2", 
+    "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", $CellContext`v3 $CellContext`w1 - $CellContext`v1 $CellContext`w3, 
+    ") ", "d", $CellContext`x2, ""],
+   Editable->False], "+", 
+  InterpretationBox[
+   RowBox[{"\<\"(\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "v3"}], " ", "w2"}], "+", 
+     RowBox[{"v2", " ", "w3"}]}], "\[InvisibleSpace]", "\<\") \"\>", 
+    "\[InvisibleSpace]", "\<\"d\"\>", "\[InvisibleSpace]", "x1", 
+    "\[InvisibleSpace]", "\<\"\"\>"}],
+   SequenceForm[
+   "(", (-$CellContext`v3) $CellContext`w2 + $CellContext`v2 $CellContext`w3, 
+    ") ", "d", $CellContext`x1, ""],
+   Editable->False]}]], "Output",
+ CellChangeTimes->{3.970825537959249*^9, 3.970825716249086*^9, 
+  3.970826186847085*^9, 3.970826293379154*^9},
+ CellLabel->"Out[6]="]
+}, Open  ]]
+},
+WindowSize->{808.1999999999999, 568.8},
+WindowMargins->{{3.5999999999999996`, Automatic}, {Automatic, 0}},
+FrontEndVersion->"12.3 for Linux x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 265, 6, 70, "Input",ExpressionUUID->"36cc80e7-a6d9-4e25-bdce-0c3e148d8ebe"],
+Cell[CellGroupData[{
+Cell[848, 30, 495, 11, 70, "Input",ExpressionUUID->"15b35385-2676-488b-9e63-5871836359ab"],
+Cell[1346, 43, 779, 18, 70, "Input",ExpressionUUID->"4da8b91b-0776-432f-bd21-d10e55d0241f"],
+Cell[2128, 63, 433, 9, 70, "Message",ExpressionUUID->"58170bd9-80b8-4795-bd1f-5aea690c878b"],
+Cell[2564, 74, 755, 13, 70, "Message",ExpressionUUID->"3667f1f0-6e50-4ebe-8344-77be121b9075"],
+Cell[3322, 89, 763, 14, 70, "Message",ExpressionUUID->"03c212ba-d1ff-47a8-8bcb-4b63761d8cd6"],
+Cell[4088, 105, 442, 9, 70, "Message",ExpressionUUID->"51944c25-619f-4e00-a2dc-6e9c90285c3f"],
+Cell[CellGroupData[{
+Cell[4555, 118, 225, 4, 70, "Print",ExpressionUUID->"d69b5e7d-3762-43b4-839a-83f245f02b67"],
+Cell[4783, 124, 225, 4, 70, "Print",ExpressionUUID->"8817391d-0f9c-4f9e-8936-5d0205c93e75"],
+Cell[5011, 130, 212, 3, 70, "Print",ExpressionUUID->"62cb4532-1060-4482-b1f9-1a0678df5d07"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5272, 139, 794, 21, 70, "Input",ExpressionUUID->"b77d177c-d691-4e13-b85c-54b6ac663f99"],
+Cell[6069, 162, 771, 15, 70, "Output",ExpressionUUID->"b8c560d0-96ad-4513-a82b-bbbb99c2bbbc"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6877, 182, 1334, 36, 70, "Input",ExpressionUUID->"c22eb739-a4fc-48c1-bde6-07c156036300"],
+Cell[8214, 220, 452, 10, 70, "Output",ExpressionUUID->"b2412dcc-2599-4d09-a25f-5a21c7f6ec3d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8703, 235, 2616, 71, 70, "Input",ExpressionUUID->"8950ad7f-d1f2-4493-9c8e-6b996f6024cd"],
+Cell[11322, 308, 1564, 39, 70, "Output",ExpressionUUID->"3ecd39bf-9ef4-47b3-a2ec-cedf41d6a1d2"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

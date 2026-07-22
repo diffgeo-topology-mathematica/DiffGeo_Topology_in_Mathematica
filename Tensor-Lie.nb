@@ -1,0 +1,2451 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     88907,       2443]
+NotebookOptionsPosition[     77743,       2256]
+NotebookOutlinePosition[     78135,       2272]
+CellTagsIndexPosition[     78092,       2269]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{
+   "This", " ", "notebook", " ", "is", " ", "a", " ", "demonstration", " ", 
+    "of", " ", "the", " ", "Lie", " ", "derivative", " ", "of", " ", "tensor",
+     " ", "fields", " ", "using", " ", "the", " ", "Ricci", " ", 
+    RowBox[{"package", ".", " ", "It"}], " ", "computes", " ", "Lie", " ", 
+    "derivatives", " ", "of", " ", "scalars"}], ",", " ", 
+   RowBox[{"vector", " ", "fields"}], ",", " ", 
+   RowBox[{"one", "-", "forms"}], ",", " ", 
+   RowBox[{
+    RowBox[{"and", " ", "higher"}], "-", 
+    RowBox[{
+    "rank", " ", "tensors", " ", "and", " ", "verifies", " ", "the", " ", 
+     "standard", " ", "coordinate", " ", "expressions", " ", "from", " ", 
+     "differential", " ", 
+     RowBox[{"geometry", "."}]}]}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.9924222748180747`*^9, 3.9924223053684177`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"1b397a33-bc0a-44c8-b002-085fb93d0a4e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Point", " ", "the", " ", "kernel", " ", "at", " ", "the", " ", "Packages",
+     " ", "folder", " ", "so", " ", "that", " ", 
+    RowBox[{"Ricci", ".", "m"}], " ", "can", " ", "be", " ", "found", " ", 
+    "and", " ", "loaded"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\</Packages/\>\""}], 
+   "]"}]}]], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"650f6d1b-701e-4029-bf15-d724ee7e0b3b"],
+
+Cell[BoxData["\<\"/home/souvik/Documents/Mathematica with description/With \
+description/Packages\"\>"], "Output",
+ CellChangeTimes->{3.993517595344624*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"68d2ef9e-d716-40a3-9144-18d20a1569ab"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Load", " ", "the", " ", "Ricci", " ", "abstract", " ", "tensor"}], "-", 
+    RowBox[{"calculus", " ", "package", " ", "by", " ", "John", " ", 
+     RowBox[{"M", ".", " ", "Lee"}]}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"<<", "Ricci.m"}]}]], "Input",
+ CellChangeTimes->{{3.8591815622478848`*^9, 3.859181563688222*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"968e084e-8362-4af6-8f48-c74f00fb1332"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\" -- Ricci Version 1.63 (May 29, 2022) --\"\>"], "Print",
+ CellChangeTimes->{3.971326261310069*^9, 3.97132702774058*^9, 
+  3.993517595368463*^9},
+ CellLabel->
+  "During evaluation of \
+In[3]:=",ExpressionUUID->"4b1d27c1-b347-43d1-9321-764086893535"],
+
+Cell[BoxData["\<\"    Copyright 1992 - 2022 John M. Lee\"\>"], "Print",
+ CellChangeTimes->{3.971326261310069*^9, 3.97132702774058*^9, 
+  3.993517595372402*^9},
+ CellLabel->
+  "During evaluation of \
+In[3]:=",ExpressionUUID->"a753fcaf-3c4a-46d5-8f25-efa4bb78c5b9"],
+
+Cell[BoxData["\<\"    Problem reports or suggestions to:\"\>"], "Print",
+ CellChangeTimes->{3.971326261310069*^9, 3.97132702774058*^9, 
+  3.9935175953752203`*^9},
+ CellLabel->
+  "During evaluation of \
+In[3]:=",ExpressionUUID->"3d45e640-19ec-420a-aec8-a1fc610592b8"],
+
+Cell[BoxData["\<\"      lee@math.washington.edu\"\>"], "Print",
+ CellChangeTimes->{3.971326261310069*^9, 3.97132702774058*^9, 
+  3.993517595382025*^9},
+ CellLabel->
+  "During evaluation of \
+In[3]:=",ExpressionUUID->"fa605379-c2c7-4dfc-8a30-f98ab92a31f3"],
+
+Cell[BoxData["\<\" -- For properly formatted output in a notebook,\"\>"], \
+"Print",
+ CellChangeTimes->{3.971326261310069*^9, 3.97132702774058*^9, 
+  3.993517595383111*^9},
+ CellLabel->
+  "During evaluation of \
+In[3]:=",ExpressionUUID->"d6adc7f4-4efd-4a6b-a8af-a875ab45ef09"],
+
+Cell[BoxData["\<\"    set the default output format type to OutputForm\"\>"], \
+"Print",
+ CellChangeTimes->{3.971326261310069*^9, 3.97132702774058*^9, 
+  3.993517595384428*^9},
+ CellLabel->
+  "During evaluation of \
+In[3]:=",ExpressionUUID->"6f1538f1-43a6-4901-82a2-2b850ec544b0"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Define", " ", "the", " ", "tangent", " ", "bundle", " ", "with", " ", 
+     "metric", " ", "g"}], ",", " ", 
+    RowBox[{
+    "dimension", " ", "n", " ", "and", " ", "abstract", " ", "indices", " ", 
+     "i"}], ",", "j", ",", "k", ",", "l", ",", 
+    RowBox[{
+     RowBox[{"m", " ", "on", " ", "a", " ", "Riemannian", " ", "manifold"}], 
+     ";", " ", 
+     RowBox[{"this", " ", "also", " ", "creates", " ", "g"}]}], ",", " ", 
+    "Rm", ",", " ", 
+    RowBox[{"Rc", " ", "and", " ", "Sc"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"DefineBundle", "[", 
+    RowBox[{"tangent", ",", "n", ",", "g", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "j", ",", "k", ",", "l", ",", "m"}], "}"}], ",", 
+     RowBox[{"MetricType", "\[Rule]", "Riemannian"}]}], "]"}], 
+   ";"}]}]], "Input",
+ CellChangeTimes->{{3.8591818567903633`*^9, 3.859181856791403*^9}, 
+   3.859181943219149*^9},
+ CellLabel->"In[4]:=",ExpressionUUID->"e7a4cf1b-2ab6-44f1-a196-9db7a4362491"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Constant \"\>", "\[InvisibleSpace]", "n", 
+   "\[InvisibleSpace]", "\<\" defined.  Conjugate[\"\>", "\[InvisibleSpace]", 
+   "n", "\[InvisibleSpace]", "\<\"] = \"\>", "\[InvisibleSpace]", "n", 
+   "\[InvisibleSpace]", "\<\".\"\>"}],
+  SequenceForm[
+  "Constant ", $CellContext`n, " defined.  Conjugate[", $CellContext`n, 
+   "] = ", $CellContext`n, "."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.9935175958454638`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"bae14288-4d90-4804-bc3b-ca937618fbe9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Index \"\>", "\[InvisibleSpace]", "i", 
+   "\[InvisibleSpace]", "\<\" associated with \"\>", "\[InvisibleSpace]", 
+   "tangent"}],
+  SequenceForm[
+  "Index ", $CellContext`i, " associated with ", $CellContext`tangent],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595852106*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"f533cba6-8a68-4537-81bf-f7000b24574c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Index \"\>", "\[InvisibleSpace]", "j", 
+   "\[InvisibleSpace]", "\<\" associated with \"\>", "\[InvisibleSpace]", 
+   "tangent"}],
+  SequenceForm[
+  "Index ", $CellContext`j, " associated with ", $CellContext`tangent],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595853485*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"7922f1a9-d969-4401-999d-f1257d8063a9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Index \"\>", "\[InvisibleSpace]", "k", 
+   "\[InvisibleSpace]", "\<\" associated with \"\>", "\[InvisibleSpace]", 
+   "tangent"}],
+  SequenceForm[
+  "Index ", $CellContext`k, " associated with ", $CellContext`tangent],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595854527*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"62e2a5b9-63b9-40ea-9229-7c2f86d06abc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Index \"\>", "\[InvisibleSpace]", "l", 
+   "\[InvisibleSpace]", "\<\" associated with \"\>", "\[InvisibleSpace]", 
+   "tangent"}],
+  SequenceForm[
+  "Index ", $CellContext`l, " associated with ", $CellContext`tangent],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.9935175958555117`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"21b5da8e-57ea-4d62-9ddd-ca67b008b8f9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Index \"\>", "\[InvisibleSpace]", "m", 
+   "\[InvisibleSpace]", "\<\" associated with \"\>", "\[InvisibleSpace]", 
+   "tangent"}],
+  SequenceForm[
+  "Index ", $CellContext`m, " associated with ", $CellContext`tangent],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595857452*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"1fec392e-1576-4449-9f74-f5af49375aef"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tensor \"\>", "\[InvisibleSpace]", 
+   TagBox["g",
+    HoldForm], "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Tensor ", 
+   HoldForm[$CellContext`g], " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.9935175958592243`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"f6f5719c-55ab-4df8-b7ba-12e7998f0ff1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Rank = \"\>", "\[InvisibleSpace]", "2", 
+   "\[InvisibleSpace]", "\<\"  Symmetries = \"\>", "\[InvisibleSpace]", 
+   "Symmetric"}],
+  SequenceForm["  Rank = ", 2, "  Symmetries = ", Symmetric],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.9935175958604116`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"971f9c3d-ed49-44fe-9f7e-827a9f599390"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Type = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "Real", "}"}], "\[InvisibleSpace]", "\<\"  Bundle = \"\>", 
+   "\[InvisibleSpace]", "tangent", 
+   "\[InvisibleSpace]", "\<\"  Variance = \"\>", "\[InvisibleSpace]", 
+   "Covariant"}],
+  SequenceForm[
+  "  Type = ", {Real}, "  Bundle = ", $CellContext`tangent, "  Variance = ", 
+   Ricci`Covariant],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595861348*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"80f6de48-f30f-429a-9328-8d59e102e1ea"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tensor \"\>", "\[InvisibleSpace]", 
+   TagBox["Rm",
+    HoldForm], "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Tensor ", 
+   HoldForm[$CellContext`Rm], " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595862287*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"5bf9e7d6-e813-4917-bd1c-65067b1a3a6f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Rank = \"\>", "\[InvisibleSpace]", "4", 
+   "\[InvisibleSpace]", "\<\"  Symmetries = \"\>", "\[InvisibleSpace]", 
+   "RiemannSymmetries"}],
+  SequenceForm["  Rank = ", 4, "  Symmetries = ", Ricci`RiemannSymmetries],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.9935175958631897`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"a225cc79-9295-4a09-bcac-a9f460372fce"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Type = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "Real", "}"}], "\[InvisibleSpace]", "\<\"  Bundle = \"\>", 
+   "\[InvisibleSpace]", "tangent", 
+   "\[InvisibleSpace]", "\<\"  Variance = \"\>", "\[InvisibleSpace]", 
+   "Covariant"}],
+  SequenceForm[
+  "  Type = ", {Real}, "  Bundle = ", $CellContext`tangent, "  Variance = ", 
+   Ricci`Covariant],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595864087*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"1acf35e0-3a30-4059-a3d8-05f17bcba35c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tensor \"\>", "\[InvisibleSpace]", 
+   TagBox["Rc",
+    HoldForm], "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Tensor ", 
+   HoldForm[$CellContext`Rc], " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.99351759586499*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"4e179e10-c66b-4cfe-a08c-5cc15eba07bd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Rank = \"\>", "\[InvisibleSpace]", "2", 
+   "\[InvisibleSpace]", "\<\"  Symmetries = \"\>", "\[InvisibleSpace]", 
+   "Symmetric"}],
+  SequenceForm["  Rank = ", 2, "  Symmetries = ", Symmetric],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595865859*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"9a1f351d-2678-4c5e-ba1a-a2d4f7c7ec78"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Type = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "Real", "}"}], "\[InvisibleSpace]", "\<\"  Bundle = \"\>", 
+   "\[InvisibleSpace]", "tangent", 
+   "\[InvisibleSpace]", "\<\"  Variance = \"\>", "\[InvisibleSpace]", 
+   "Covariant"}],
+  SequenceForm[
+  "  Type = ", {Real}, "  Bundle = ", $CellContext`tangent, "  Variance = ", 
+   Ricci`Covariant],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595866744*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"b9dee649-abbb-4b7b-9d7e-a8f14b63e9d2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tensor \"\>", "\[InvisibleSpace]", 
+   TagBox["Sc",
+    HoldForm], "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Tensor ", 
+   HoldForm[$CellContext`Sc], " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595867647*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"ffbc821a-7868-4729-b5e2-92251b416ec8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Rank = \"\>", "\[InvisibleSpace]", "0", 
+   "\[InvisibleSpace]", "\<\"  Symmetries = \"\>", "\[InvisibleSpace]", 
+   "NoSymmetries"}],
+  SequenceForm["  Rank = ", 0, "  Symmetries = ", Ricci`NoSymmetries],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595868546*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"e2440e5a-98cc-4387-9c73-82516ebfeb28"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Type = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "Real", "}"}], "\[InvisibleSpace]", "\<\"  Bundle = \"\>", 
+   "\[InvisibleSpace]", "tangent", 
+   "\[InvisibleSpace]", "\<\"  Variance = \"\>", "\[InvisibleSpace]", 
+   "Covariant"}],
+  SequenceForm[
+  "  Type = ", {Real}, "  Bundle = ", $CellContext`tangent, "  Variance = ", 
+   Ricci`Covariant],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.9935175958695593`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"cbc9ddba-c6dc-4948-b972-c61cbfd333d3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Bundle \"\>", "\[InvisibleSpace]", "tangent", 
+   "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Bundle ", $CellContext`tangent, " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595870488*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"36ac9af3-a989-43f8-a948-f7bac71aff17"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   Metric = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"g", ",", 
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], 
+   "\[InvisibleSpace]", "\<\"   Dimension = \"\>", "\[InvisibleSpace]", "n", 
+   "\[InvisibleSpace]", "\<\"   Indices = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "j", ",", "k", ",", "l", ",", "m"}], "}"}]}],
+  SequenceForm["   Metric = ", 
+   Ricci`Tensor[$CellContext`g, {}, {}], "   Dimension = ", $CellContext`n, 
+   "   Indices = ", {$CellContext`i, $CellContext`j, $CellContext`k, \
+$CellContext`l, $CellContext`m}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595871443*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"5a2fedf6-b74d-4701-8426-a7aff048f8bf"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   Bundle Type = \"\>", "\[InvisibleSpace]", "Real", 
+   "\[InvisibleSpace]", "\<\"   Metric Type = \"\>", "\[InvisibleSpace]", 
+   "Riemannian"}],
+  SequenceForm[
+  "   Bundle Type = ", Real, "   Metric Type = ", Ricci`Riemannian],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595872547*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"db1cfc03-2a44-44c0-8e2b-4c854df427e1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   Tangent Bundle = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "tangent", "}"}]}],
+  SequenceForm["   Tangent Bundle = ", {$CellContext`tangent}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595873494*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"09f8dd22-1220-448b-9b20-1c34012c5884"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"   Connection is \"\>", "\[InvisibleSpace]", "\<\"\"\>", 
+   "\[InvisibleSpace]", "\<\"\"\>", 
+   "\[InvisibleSpace]", "\<\"torsion free.\"\>"}],
+  SequenceForm["   Connection is ", "", "", "torsion free."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262618978977`*^9, 3.971327028364058*^9, 
+  3.993517595874394*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"3c462ef7-509f-4ee7-940e-0056bcd095d0"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Declare", " ", "u", " ", "as", " ", "a", " ", "scalar", " ", "field"}], 
+    ",", " ", 
+    RowBox[{
+     RowBox[{"a", " ", "rank"}], "-", 
+     RowBox[{"0", " ", "tensor"}]}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"DefineTensor", "[", 
+    RowBox[{"u", ",", "0"}], "]"}], ";"}]}]], "Input",
+ CellChangeTimes->{{3.8591819584293013`*^9, 3.859181960504304*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"276d9d66-05df-475b-9ef6-0d0932294263"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tensor \"\>", "\[InvisibleSpace]", 
+   TagBox["u",
+    HoldForm], "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Tensor ", 
+   HoldForm[$CellContext`u], " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262619470043`*^9, 3.971327028445694*^9, 
+  3.993517595896517*^9},
+ CellLabel->
+  "During evaluation of \
+In[5]:=",ExpressionUUID->"28107efe-5b75-4705-a2cd-de7b6e4ece98"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Rank = \"\>", "\[InvisibleSpace]", "0", 
+   "\[InvisibleSpace]", "\<\"  Symmetries = \"\>", "\[InvisibleSpace]", 
+   "NoSymmetries"}],
+  SequenceForm["  Rank = ", 0, "  Symmetries = ", Ricci`NoSymmetries],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262619470043`*^9, 3.971327028445694*^9, 
+  3.9935175958996897`*^9},
+ CellLabel->
+  "During evaluation of \
+In[5]:=",ExpressionUUID->"c79f3ac2-9ff1-46ce-af78-7e9afda4d1e0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Type = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "Real", "}"}], "\[InvisibleSpace]", "\<\"  Bundle = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", "tangent", "}"}], 
+   "\[InvisibleSpace]", "\<\"  Variance = \"\>", "\[InvisibleSpace]", 
+   "Covariant"}],
+  SequenceForm[
+  "  Type = ", {Real}, "  Bundle = ", {$CellContext`tangent}, "  Variance = ",
+    Ricci`Covariant],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262619470043`*^9, 3.971327028445694*^9, 
+  3.993517595908736*^9},
+ CellLabel->
+  "During evaluation of \
+In[5]:=",ExpressionUUID->"d01c66a7-3df9-4376-9973-ac029b2f98a4"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Declare", " ", "w", " ", "as", " ", "a", " ", "covariant", " ", 
+     "vector"}], ",", " ", 
+    RowBox[{
+     RowBox[{"a", " ", "rank"}], "-", 
+     RowBox[{"1", " ", "one"}], "-", 
+     RowBox[{
+     "form", " ", "with", " ", "one", " ", "lower", " ", "index"}]}]}], 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"DefineTensor", "[", 
+   RowBox[{"w", ",", "1"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.8591819659131107`*^9, 3.8591819712918873`*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"1cc9c2c0-65cf-4cff-b3da-a7919fc2bf24"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tensor \"\>", "\[InvisibleSpace]", 
+   TagBox["w",
+    HoldForm], "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Tensor ", 
+   HoldForm[$CellContext`w], " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326261980393*^9, 3.9713270284658213`*^9, 
+  3.993517595924473*^9},
+ CellLabel->
+  "During evaluation of \
+In[6]:=",ExpressionUUID->"6ecb5ad2-8fa4-46fe-bcf3-a1afdbd7058e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Rank = \"\>", "\[InvisibleSpace]", "1", 
+   "\[InvisibleSpace]", "\<\"  Symmetries = \"\>", "\[InvisibleSpace]", 
+   "NoSymmetries"}],
+  SequenceForm["  Rank = ", 1, "  Symmetries = ", Ricci`NoSymmetries],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326261980393*^9, 3.9713270284658213`*^9, 
+  3.993517595925988*^9},
+ CellLabel->
+  "During evaluation of \
+In[6]:=",ExpressionUUID->"00d4dad6-3a52-4500-a16a-4429cb85d76f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Type = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "Real", "}"}], "\[InvisibleSpace]", "\<\"  Bundle = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", "tangent", "}"}], 
+   "\[InvisibleSpace]", "\<\"  Variance = \"\>", "\[InvisibleSpace]", 
+   "Covariant"}],
+  SequenceForm[
+  "  Type = ", {Real}, "  Bundle = ", {$CellContext`tangent}, "  Variance = ",
+    Ricci`Covariant],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326261980393*^9, 3.9713270284658213`*^9, 
+  3.993517595930544*^9},
+ CellLabel->
+  "During evaluation of \
+In[6]:=",ExpressionUUID->"0a23b61a-6f8f-4d67-8995-ba079c82f902"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Tensor", "[", 
+  RowBox[{"w", ",", 
+   RowBox[{"{", "}"}], ",", 
+   RowBox[{"{", "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.971326261988888*^9, 3.971327028520234*^9, 
+  3.993517595936955*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"65d30b26-65b8-4844-8a18-6fa9235272f0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Declare", " ", "v", " ", "as", " ", "a", " ", "contravariant", " ", 
+     "vector", " ", "field"}], ",", " ", 
+    RowBox[{
+    "the", " ", "flow", " ", "field", " ", "along", " ", "which", " ", "the", 
+     " ", "Lie", " ", "derivatives", " ", "are", " ", "taken"}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"DefineTensor", "[", 
+    RowBox[{"v", ",", "1", ",", 
+     RowBox[{"Variance", "\[Rule]", "Con"}]}], "]"}], " ", "\n"}]}]], "Input",\
+
+ CellChangeTimes->{{3.8591820034542837`*^9, 3.8591820034566593`*^9}, {
+  3.97132023813163*^9, 3.971320246739938*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"8c4820a6-619f-4441-aa15-77c4fa866c40"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tensor \"\>", "\[InvisibleSpace]", 
+   TagBox["v",
+    HoldForm], "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Tensor ", 
+   HoldForm[$CellContext`v], " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262620165777`*^9, 3.971327028531245*^9, 
+  3.993517595954255*^9},
+ CellLabel->
+  "During evaluation of \
+In[7]:=",ExpressionUUID->"0c6973a3-e8a9-495b-9044-b9225db4ff1f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Rank = \"\>", "\[InvisibleSpace]", "1", 
+   "\[InvisibleSpace]", "\<\"  Symmetries = \"\>", "\[InvisibleSpace]", 
+   "NoSymmetries"}],
+  SequenceForm["  Rank = ", 1, "  Symmetries = ", Ricci`NoSymmetries],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262620165777`*^9, 3.971327028531245*^9, 
+  3.9935175959562473`*^9},
+ CellLabel->
+  "During evaluation of \
+In[7]:=",ExpressionUUID->"f0b4c2bd-ea3b-4ccf-8906-fa62a0a31ec3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Type = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "Real", "}"}], "\[InvisibleSpace]", "\<\"  Bundle = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", "tangent", "}"}], 
+   "\[InvisibleSpace]", "\<\"  Variance = \"\>", "\[InvisibleSpace]", 
+   "Contravariant"}],
+  SequenceForm[
+  "  Type = ", {Real}, "  Bundle = ", {$CellContext`tangent}, "  Variance = ",
+    Ricci`Contravariant],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9713262620165777`*^9, 3.971327028531245*^9, 
+  3.993517595958922*^9},
+ CellLabel->
+  "During evaluation of \
+In[7]:=",ExpressionUUID->"d310505b-ac68-4ee6-89c1-a07dd63065af"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Tensor", "[", 
+  RowBox[{"v", ",", 
+   RowBox[{"{", "}"}], ",", 
+   RowBox[{"{", "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.9713262620272703`*^9, 3.971327028540823*^9, 
+  3.993517595960005*^9},
+ CellLabel->"Out[7]=",ExpressionUUID->"1b754316-6c6b-43b0-9fcb-b5f7cc080400"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Declare", " ", "a", " ", "second", " ", "contravariant", " ", "vector", 
+    " ", "field", " ", "v2"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"DefineTensor", "[", 
+   RowBox[{"v2", ",", "1", ",", 
+    RowBox[{"Variance", "\[Rule]", "Con"}]}], "]"}], " "}]], "Input",
+ CellChangeTimes->{3.971320772168551*^9},
+ CellLabel->"In[8]:=",ExpressionUUID->"64224939-67e1-436e-9e36-17eed69a63e7"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tensor \"\>", "\[InvisibleSpace]", 
+   TagBox["v2",
+    HoldForm], "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Tensor ", 
+   HoldForm[$CellContext`v2], " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326262035389*^9, 3.9713270285680103`*^9, 
+  3.993517595989547*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"7feaf91d-0607-47cf-bc6c-db83d5e993f6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Rank = \"\>", "\[InvisibleSpace]", "1", 
+   "\[InvisibleSpace]", "\<\"  Symmetries = \"\>", "\[InvisibleSpace]", 
+   "NoSymmetries"}],
+  SequenceForm["  Rank = ", 1, "  Symmetries = ", Ricci`NoSymmetries],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326262035389*^9, 3.9713270285680103`*^9, 
+  3.9935175959912567`*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"481e4d79-36fb-4ea8-864d-2401d6670520"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Type = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "Real", "}"}], "\[InvisibleSpace]", "\<\"  Bundle = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", "tangent", "}"}], 
+   "\[InvisibleSpace]", "\<\"  Variance = \"\>", "\[InvisibleSpace]", 
+   "Contravariant"}],
+  SequenceForm[
+  "  Type = ", {Real}, "  Bundle = ", {$CellContext`tangent}, "  Variance = ",
+    Ricci`Contravariant],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326262035389*^9, 3.9713270285680103`*^9, 
+  3.9935175960012503`*^9},
+ CellLabel->
+  "During evaluation of \
+In[8]:=",ExpressionUUID->"87166b5a-a66d-4328-974f-bd9f5cdf5ab6"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Tensor", "[", 
+  RowBox[{"v2", ",", 
+   RowBox[{"{", "}"}], ",", 
+   RowBox[{"{", "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.971326262042255*^9, 3.971327028580452*^9, 
+  3.993517596002739*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"0cfc2269-32cc-4d81-9933-535b49687fde"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Lie", " ", "derivative", " ", "of", " ", "the", " ", "scalar", " ", "u", 
+     " ", "along", " ", "v"}], ";", " ", 
+    RowBox[{
+    "it", " ", "reduces", " ", "to", " ", "the", " ", "directional", " ", 
+     "derivative", " ", 
+     RowBox[{"Del", "[", 
+      RowBox[{"v", ",", "u"}], "]"}]}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"Lie", "[", 
+   RowBox[{"v", ",", "u"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.859183494435206*^9, 3.859183494436256*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"d6f714bc-a8c2-4e3e-92ec-330a1628e434"],
+
+Cell[BoxData[
+ RowBox[{"Del", "[", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], ",", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"u", ",", 
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.971326262068098*^9, 3.9713270286093893`*^9, 
+  3.993517596028489*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"561a6bcf-3cd5-449e-9369-dda3556865bf"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Lie", " ", "derivative", " ", "of", " ", "the", " ", "one"}], 
+     "-", 
+     RowBox[{
+     "form", " ", "w", " ", "along", " ", "the", " ", "vector", " ", "field", 
+      " ", "v"}]}], ",", " ", 
+    RowBox[{"held", " ", "in", " ", "symbolic", " ", "form"}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"Lie", "[", 
+   RowBox[{"v", ",", "w"}], "]"}], " "}]], "Input",
+ CellChangeTimes->{{3.859183511133224*^9, 3.859183511134461*^9}, {
+   3.971320046221505*^9, 3.971320052369186*^9}, 3.971321213128883*^9},
+ CellLabel->"In[10]:=",ExpressionUUID->"b6cb6942-eb46-4017-894d-b857ba398c97"],
+
+Cell[BoxData[
+ RowBox[{"Lie", "[", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], ",", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"w", ",", 
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.971326262113998*^9, 3.971327028618679*^9, 
+  3.993517596060492*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"b477b5e6-5195-4ae5-b9b1-67c04b9055f1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Expand", " ", "the", " ", "Lie", " ", "derivative", " ", "into", " ", 
+     "tangent"}], "-", 
+    RowBox[{
+    "basis", " ", "components", " ", "and", " ", "partial", " ", 
+     "derivatives"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"BasisExpand", "[", "%", "]"}], " "}]], "Input",
+ CellChangeTimes->{{3.859183733562313*^9, 3.859183733564044*^9}, {
+  3.971321216870829*^9, 3.9713212427218037`*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"5a8af1fe-4772-41e1-8b70-23797658ec55"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"Basis", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m11", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m14", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"w", ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m11", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m14", "]"}], "}"}]}], "]"}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"Basis", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m11", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m12", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m11", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"w", ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m12", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}]}]}]], "Output",
+ CellChangeTimes->{3.971326262123459*^9, 3.971327028650543*^9, 
+  3.993517596089263*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"3ba65f90-7adc-43dd-886e-1ec35a1dc5cf"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Simplify", " ", "and", " ", "relabel", " ", "the", " ", "dummy", " ", 
+     "summation", " ", "indices", " ", "to", " ", "i"}], ",", "j", ",", "k"}],
+    "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"TensorSimplify", "[", "%", "]"}]}]], "Input",
+ CellChangeTimes->{{3.8591837446857147`*^9, 3.859183749270213*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"c1518ce7-0cde-49db-9dde-b710f5eafda9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"Basis", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "i", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "j", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"w", ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "i", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "j", "]"}], "}"}]}], "]"}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"Basis", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "i", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "j", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "i", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"w", ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "j", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}]}]}]], "Output",
+ CellChangeTimes->{3.9713262621512127`*^9, 3.97132702868335*^9, 
+  3.993517596117282*^9},
+ CellLabel->"Out[12]=",ExpressionUUID->"1b370e0a-bfe2-4475-a5b8-b1b963a28e0b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Display", " ", "the", " ", "previous", " ", "result", " ", "in", " ", 
+     "OutputForm"}], ",", " ", 
+    RowBox[{
+    "the", " ", "readable", " ", "index", " ", "notation", " ", "of", " ", 
+     "the", " ", "Ricci", " ", "package"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"OutputForm", "[", "%", "]"}]}]], "Input",
+ CellChangeTimes->{{3.971321258709324*^9, 3.971321263569207*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"29863bfb-83a7-483a-8420-e567a08578eb"],
+
+Cell[OutputFormData["\<\
+Basis[U[i]]*v[U[j]]*w[L[i]] [L[j]] + Basis[U[i]]*v[U[j]] [L[i]]*w[L[j]]\
+\>", "\<\
+ j              i     j              i 
+v   w      Basis   + v      w   Basis
+     i ;j               ;i   j\
+\>"], "Output",
+ CellChangeTimes->{3.971326262181469*^9, 3.9713270286958647`*^9, 
+  3.993517596150173*^9},
+ CellLabel->
+  "Out[13]//OutputForm=",ExpressionUUID->"0d92398d-3406-4185-9306-\
+69bd45ca9b54"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Declare", " ", "alpha", " ", "as", " ", "a", " ", "rank"}], "-", 
+    
+    RowBox[{
+    "2", " ", "covariant", " ", "tensor", " ", "with", " ", "two", " ", 
+     "lower", " ", "indices"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"DefineTensor", "[", 
+   RowBox[{"alpha", ",", "2"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.971326518456759*^9, 3.971326525475378*^9}, {
+  3.971326556515863*^9, 3.971326561189583*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"6251966d-3077-4358-bf3e-8675c653864e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tensor \"\>", "\[InvisibleSpace]", 
+   TagBox["alpha",
+    HoldForm], "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Tensor ", 
+   HoldForm[$CellContext`alpha], " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326561674137*^9, 3.971327028728961*^9, 
+  3.993517596182578*^9},
+ CellLabel->
+  "During evaluation of \
+In[14]:=",ExpressionUUID->"f5fed7b0-1732-4875-b1a0-2b5fc722cb71"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Rank = \"\>", "\[InvisibleSpace]", "2", 
+   "\[InvisibleSpace]", "\<\"  Symmetries = \"\>", "\[InvisibleSpace]", 
+   "NoSymmetries"}],
+  SequenceForm["  Rank = ", 2, "  Symmetries = ", Ricci`NoSymmetries],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326561674137*^9, 3.971327028728961*^9, 
+  3.993517596184634*^9},
+ CellLabel->
+  "During evaluation of \
+In[14]:=",ExpressionUUID->"0219f231-c452-4ec0-a9bc-ae796665e4f6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Type = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "Real", "}"}], "\[InvisibleSpace]", "\<\"  Bundle = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", "tangent", "}"}], 
+   "\[InvisibleSpace]", "\<\"  Variance = \"\>", "\[InvisibleSpace]", 
+   "Covariant"}],
+  SequenceForm[
+  "  Type = ", {Real}, "  Bundle = ", {$CellContext`tangent}, "  Variance = ",
+    Ricci`Covariant],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326561674137*^9, 3.971327028728961*^9, 
+  3.9935175961875343`*^9},
+ CellLabel->
+  "During evaluation of \
+In[14]:=",ExpressionUUID->"5a425b4d-5c10-4366-b4db-55f6f8e584fa"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Tensor", "[", 
+  RowBox[{"alpha", ",", 
+   RowBox[{"{", "}"}], ",", 
+   RowBox[{"{", "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.9713265616846533`*^9, 3.971327028738577*^9, 
+  3.993517596188614*^9},
+ CellLabel->"Out[14]=",ExpressionUUID->"a75f7fbc-5b2a-44c9-837e-e7fdcfb6f7da"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Lie", " ", "derivative", " ", "of", " ", "the", " ", "rank"}], 
+    "-", 
+    RowBox[{
+    "2", " ", "covariant", " ", "tensor", " ", "alpha", " ", "along", " ", 
+     "v"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"Lie", "[", 
+   RowBox[{"v", ",", "alpha"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.971326569456184*^9, 3.9713265737577477`*^9}},
+ CellLabel->"In[15]:=",ExpressionUUID->"5c99707c-9719-4235-9450-7447554058c5"],
+
+Cell[BoxData[
+ RowBox[{"Lie", "[", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], ",", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"alpha", ",", 
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.971326574247498*^9, 3.971326604672974*^9, 
+  3.971327028750846*^9, 3.99351759622318*^9},
+ CellLabel->"Out[15]=",ExpressionUUID->"09327113-d287-4449-ae35-2cf495ad2dad"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Expand", " ", "the", " ", "Lie", " ", "derivative", " ", "of", " ", 
+     "alpha", " ", "into", " ", "tangent"}], "-", 
+    RowBox[{"basis", " ", "components"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"BasisExpand", "[", "%", "]"}]}]], "Input",
+ CellChangeTimes->{{3.971326578903223*^9, 3.9713265825449944`*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"33e126a7-bbc7-4fe6-ad38-3a419410c5bf"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"alpha", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"L", "[", "m17", "]"}], ",", 
+       RowBox[{"L", "[", "m16", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m17", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m15", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m15", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m16", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"alpha", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"L", "[", "m15", "]"}], ",", 
+       RowBox[{"L", "[", "m17", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m17", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m16", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m15", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m16", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"alpha", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"L", "[", "m15", "]"}], ",", 
+       RowBox[{"L", "[", "m16", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m19", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m19", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m15", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m16", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}]}]], "Output",
+ CellChangeTimes->{{3.97132658303863*^9, 3.9713266070689583`*^9}, 
+   3.9713270287794437`*^9, 3.993517596288622*^9},
+ CellLabel->"Out[16]=",ExpressionUUID->"e7ddbe46-89b9-43be-ba1c-7f0b123f3327"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Simplify", " ", "and", " ", "relabel", " ", "the", " ", "dummy", " ", 
+    "summation", " ", "indices"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"TensorSimplify", "[", "%", "]"}]}]], "Input",
+ CellChangeTimes->{{3.9713265868898582`*^9, 3.9713265909243183`*^9}},
+ CellLabel->"In[17]:=",ExpressionUUID->"51fb309d-d7cc-4ccd-96c3-55d7f6c6f004"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"alpha", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"L", "[", "i", "]"}], ",", 
+       RowBox[{"L", "[", "j", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "k", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "k", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "i", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "j", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"alpha", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"L", "[", "i", "]"}], ",", 
+       RowBox[{"L", "[", "j", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "j", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "k", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "i", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "k", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"alpha", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"L", "[", "i", "]"}], ",", 
+       RowBox[{"L", "[", "j", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "i", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "k", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "k", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "j", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}]}]], "Output",
+ CellChangeTimes->{{3.97132659148627*^9, 3.971326609715519*^9}, 
+   3.97132702881083*^9, 3.9935175963112307`*^9},
+ CellLabel->"Out[17]=",ExpressionUUID->"2761a517-4b8c-496a-99c4-0938f0ddd17b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Display", " ", "the", " ", "previous", " ", "result", " ", "in", " ", 
+     "OutputForm"}], ",", " ", 
+    RowBox[{
+    "the", " ", "readable", " ", "index", " ", "notation", " ", "of", " ", 
+     "the", " ", "Ricci", " ", "package"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"OutputForm", "[", "%", "]"}]}]], "Input",
+ CellChangeTimes->{{3.971326592479673*^9, 3.9713266003073597`*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"811e9e0c-150b-4584-b1f3-7ab4fd6b2ff4"],
+
+Cell[OutputFormData["\<\
+alpha[L[i], L[j]] [L[k]]*v[U[k]]*Basis[U[i]] \[TensorProduct] Basis[U[j]] + \
+alpha[L[i], L[j]]*v[U[j]] [L[k]]*Basis[U[i]] \[TensorProduct] Basis[U[k]] + \
+alpha[L[i], L[j]]*v[U[i]] [L[k]]*Basis[U[k]] \[TensorProduct] Basis[U[j]]\
+\>", "\<\
+              k       i           j               j          i           k    \
+           i          k           j 
+alpha        v   Basis   (X) Basis   + alpha     v      Basis   (X) Basis   + \
+alpha     v      Basis   (X) Basis
+     i j ;k                                 i j     ;k                        \
+     i j     ;k\
+\>"], "Output",
+ CellChangeTimes->{{3.971326596321412*^9, 3.9713266118522053`*^9}, 
+   3.971327028819706*^9, 3.993517596339113*^9},
+ CellLabel->
+  "Out[18]//OutputForm=",ExpressionUUID->"b5b16a8c-ab45-4334-8c27-\
+fc7970462685"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Declare", " ", "beta", " ", "as", " ", "a", " ", "rank"}], "-", 
+    RowBox[{
+    "2", " ", "contravariant", " ", "tensor", " ", "with", " ", "two", " ", 
+     "upper", " ", "indices"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"DefineTensor", "[", 
+   RowBox[{"beta", ",", "2", ",", 
+    RowBox[{"Variance", "\[Rule]", "Con"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9713266485739603`*^9, 3.971326669301154*^9}},
+ CellLabel->"In[19]:=",ExpressionUUID->"b68605d3-6aa8-4d3a-a1c0-ee67bc04f0be"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tensor \"\>", "\[InvisibleSpace]", 
+   TagBox["beta",
+    HoldForm], "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Tensor ", 
+   HoldForm[$CellContext`beta], " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326670510757*^9, 3.9713270288543873`*^9, 
+  3.9935175963694267`*^9},
+ CellLabel->
+  "During evaluation of \
+In[19]:=",ExpressionUUID->"3f44ef14-b0aa-4425-b492-563b2903686b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Rank = \"\>", "\[InvisibleSpace]", "2", 
+   "\[InvisibleSpace]", "\<\"  Symmetries = \"\>", "\[InvisibleSpace]", 
+   "NoSymmetries"}],
+  SequenceForm["  Rank = ", 2, "  Symmetries = ", Ricci`NoSymmetries],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326670510757*^9, 3.9713270288543873`*^9, 
+  3.993517596375667*^9},
+ CellLabel->
+  "During evaluation of \
+In[19]:=",ExpressionUUID->"1e2e8536-e699-49d5-b4f1-8446305cd46c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Type = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "Real", "}"}], "\[InvisibleSpace]", "\<\"  Bundle = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", "tangent", "}"}], 
+   "\[InvisibleSpace]", "\<\"  Variance = \"\>", "\[InvisibleSpace]", 
+   "Contravariant"}],
+  SequenceForm[
+  "  Type = ", {Real}, "  Bundle = ", {$CellContext`tangent}, "  Variance = ",
+    Ricci`Contravariant],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971326670510757*^9, 3.9713270288543873`*^9, 
+  3.9935175963815804`*^9},
+ CellLabel->
+  "During evaluation of \
+In[19]:=",ExpressionUUID->"5f9f5258-9738-4ced-9b20-bb3ce2d9ccd0"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Tensor", "[", 
+  RowBox[{"beta", ",", 
+   RowBox[{"{", "}"}], ",", 
+   RowBox[{"{", "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.971326670521844*^9, 3.971327028865896*^9, 
+  3.9935175963825502`*^9},
+ CellLabel->"Out[19]=",ExpressionUUID->"8fe14b5c-232e-4f39-8203-f965c4919db4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Lie", " ", "derivative", " ", "of", " ", "the", " ", "rank"}], 
+    "-", 
+    RowBox[{
+    "2", " ", "contravariant", " ", "tensor", " ", "beta", " ", "along", " ", 
+     "v"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"Lie", "[", 
+   RowBox[{"v", ",", "beta"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.971326569456184*^9, 3.9713265737577477`*^9}, {
+  3.9713266761352043`*^9, 3.971326678230836*^9}},
+ CellLabel->"In[20]:=",ExpressionUUID->"68168d9d-add8-447e-a639-dab734e6b53c"],
+
+Cell[BoxData[
+ RowBox[{"Lie", "[", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], ",", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"beta", ",", 
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.9713266804723873`*^9, 3.971327028875297*^9, 
+  3.993517596403981*^9},
+ CellLabel->"Out[20]=",ExpressionUUID->"6adc7a9a-407b-41a6-977f-7a0b544c0c03"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Expand", " ", "the", " ", "Lie", " ", "derivative", " ", "of", " ", 
+     "beta", " ", "into", " ", "tangent"}], "-", 
+    RowBox[{"basis", " ", "components"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"BasisExpand", "[", "%", "]"}]}]], "Input",
+ CellChangeTimes->{{3.971326578903223*^9, 3.9713265825449944`*^9}},
+ CellLabel->"In[21]:=",ExpressionUUID->"c9024df4-7226-400f-b553-34caedc5db9e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"beta", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"U", "[", "m22", "]"}], ",", 
+        RowBox[{"U", "[", "m21", "]"}]}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m20", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m22", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m20", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m21", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "-", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"beta", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "m20", "]"}], ",", 
+       RowBox[{"U", "[", "m22", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m21", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m22", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m20", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m21", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"beta", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "m20", "]"}], ",", 
+       RowBox[{"U", "[", "m21", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m24", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m24", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m20", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m21", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}]}]], "Output",
+ CellChangeTimes->{3.971326682889845*^9, 3.971327028905672*^9, 
+  3.993517596433333*^9},
+ CellLabel->"Out[21]=",ExpressionUUID->"59896458-0785-4fb7-8e1c-6f0907d3d641"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Simplify", " ", "and", " ", "relabel", " ", "the", " ", "dummy", " ", 
+    "summation", " ", "indices"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"TensorSimplify", "[", "%", "]"}]}]], "Input",
+ CellChangeTimes->{{3.9713265868898582`*^9, 3.9713265909243183`*^9}},
+ CellLabel->"In[22]:=",ExpressionUUID->"695ae752-4d95-4f9b-9a9e-a720659e3e77"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"beta", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "i", "]"}], ",", 
+       RowBox[{"U", "[", "j", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "k", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "k", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "i", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "j", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "-", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"beta", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "i", "]"}], ",", 
+       RowBox[{"U", "[", "j", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "k", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "j", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "i", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "k", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "-", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"beta", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "i", "]"}], ",", 
+       RowBox[{"U", "[", "j", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "k", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "i", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "k", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "j", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}]}]], "Output",
+ CellChangeTimes->{3.971326685261753*^9, 3.971327028938397*^9, 
+  3.993517596465851*^9},
+ CellLabel->"Out[22]=",ExpressionUUID->"4dfffd2f-9b96-49f6-8f35-51dd99e5514e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Display", " ", "the", " ", "previous", " ", "result", " ", "in", " ", 
+     "OutputForm"}], ",", " ", 
+    RowBox[{
+    "the", " ", "readable", " ", "index", " ", "notation", " ", "of", " ", 
+     "the", " ", "Ricci", " ", "package"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"OutputForm", "[", "%", "]"}]}]], "Input",
+ CellChangeTimes->{{3.971326592479673*^9, 3.9713266003073597`*^9}},
+ CellLabel->"In[23]:=",ExpressionUUID->"b80f8475-7029-4b91-9d08-b22b4575db71"],
+
+Cell[OutputFormData["\<\
+beta[U[i], U[j]] [L[k]]*v[U[k]]*Basis[L[i]] \[TensorProduct] Basis[L[j]] - \
+beta[U[i], U[j]]*v[U[k]] [L[j]]*Basis[L[i]] \[TensorProduct] Basis[L[k]] - \
+beta[U[i], U[j]]*v[U[k]] [L[i]]*Basis[L[k]] \[TensorProduct] Basis[L[j]]\
+\>", "\<\
+    i j      k                            i j   k                             \
+  i j   k 
+beta        v   Basis   (X) Basis   - beta     v      Basis   (X) Basis   - \
+beta     v      Basis   (X) Basis
+        ;k           i           j                ;j       i           k      \
+          ;i       k           j\
+\>"], "Output",
+ CellChangeTimes->{3.971326688855939*^9, 3.9713270289703417`*^9, 
+  3.9935175964932413`*^9},
+ CellLabel->
+  "Out[23]//OutputForm=",ExpressionUUID->"d91f857f-bcc4-48be-b5c3-\
+691b73696d37"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Declare", " ", "TT", " ", "as", " ", "a", " ", "rank"}], "-", 
+    RowBox[{
+    "4", " ", "mixed", " ", "tensor", " ", "with", " ", "two", " ", 
+     "contravariant", " ", "and", " ", "two", " ", "covariant", " ", 
+     "slots"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"DefineTensor", "[", 
+   RowBox[{"TT", ",", "4", ",", 
+    RowBox[{"Variance", "\[Rule]", " ", 
+     RowBox[{"{", 
+      RowBox[{"Con", ",", "Con", ",", "Co", ",", "Co"}], "}"}]}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.97132677985649*^9, 3.9713268059426737`*^9}, 
+   3.9713268425574303`*^9, {3.971326878307439*^9, 3.971326882767846*^9}, {
+   3.971326914028426*^9, 3.9713269147318563`*^9}, {3.971326984519288*^9, 
+   3.971326985405006*^9}, {3.9713270579298687`*^9, 3.971327059614427*^9}, {
+   3.971327237169256*^9, 3.9713273050123796`*^9}, {3.9713273634173594`*^9, 
+   3.971327383813222*^9}},
+ CellLabel->"In[24]:=",ExpressionUUID->"a831a9a5-9b3c-4d2c-ad2c-6a7a885d6fca"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Tensor \"\>", "\[InvisibleSpace]", 
+   TagBox["TT",
+    HoldForm], "\[InvisibleSpace]", "\<\" defined.\"\>"}],
+  SequenceForm["Tensor ", 
+   HoldForm[$CellContext`TT], " defined."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971327387560542*^9, 3.99351759652594*^9},
+ CellLabel->
+  "During evaluation of \
+In[24]:=",ExpressionUUID->"53a35cb1-edea-4a69-bd5b-8a472d22b469"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Rank = \"\>", "\[InvisibleSpace]", "4", 
+   "\[InvisibleSpace]", "\<\"  Symmetries = \"\>", "\[InvisibleSpace]", 
+   "NoSymmetries"}],
+  SequenceForm["  Rank = ", 4, "  Symmetries = ", Ricci`NoSymmetries],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971327387560542*^9, 3.993517596529304*^9},
+ CellLabel->
+  "During evaluation of \
+In[24]:=",ExpressionUUID->"8b980338-3019-4c9f-8db4-6f6bbe64a176"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"  Type = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "Real", "}"}], "\[InvisibleSpace]", "\<\"  Bundle = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", "tangent", "}"}], 
+   "\[InvisibleSpace]", "\<\"  Variance = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+    "Contravariant", ",", "Contravariant", ",", "Covariant", ",", 
+     "Covariant"}], "}"}]}],
+  SequenceForm[
+  "  Type = ", {Real}, "  Bundle = ", {$CellContext`tangent}, 
+   "  Variance = ", {
+   Ricci`Contravariant, Ricci`Contravariant, Ricci`Covariant, 
+    Ricci`Covariant}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.971327387560542*^9, 3.9935175965387087`*^9},
+ CellLabel->
+  "During evaluation of \
+In[24]:=",ExpressionUUID->"d1d42639-7f0f-4285-aeb7-2a71f24a5fe5"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Tensor", "[", 
+  RowBox[{"TT", ",", 
+   RowBox[{"{", "}"}], ",", 
+   RowBox[{"{", "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.971327387573864*^9, 3.993517596540216*^9},
+ CellLabel->"Out[24]=",ExpressionUUID->"a6da9f43-9492-4122-a689-ecbe3da09f66"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Lie", " ", "derivative", " ", "of", " ", "the", " ", "mixed", " ", 
+     "rank"}], "-", 
+    RowBox[{"4", " ", "tensor", " ", "TT", " ", "along", " ", "v"}]}], "*)"}],
+   "\[IndentingNewLine]", 
+  RowBox[{"Lie", "[", 
+   RowBox[{"v", ",", "TT"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.971326569456184*^9, 3.9713265737577477`*^9}, {
+  3.9713266761352043`*^9, 3.971326678230836*^9}, {3.971326949986002*^9, 
+  3.971326952149838*^9}, {3.971327211763517*^9, 3.971327225170274*^9}, {
+  3.9713272612053213`*^9, 3.971327263091154*^9}},
+ CellLabel->"In[25]:=",ExpressionUUID->"53a8efd6-6554-4097-ab11-59b0c9dec12c"],
+
+Cell[BoxData[
+ RowBox[{"Lie", "[", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], ",", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"TT", ",", 
+     RowBox[{"{", "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}]}], "]"}]], "Output",
+ CellChangeTimes->{
+  3.97132695305112*^9, 3.971326994563738*^9, 3.9713270290219107`*^9, 
+   3.971327070468708*^9, {3.971327213458281*^9, 3.9713272256697607`*^9}, 
+   3.971327266102903*^9, 3.971327400256654*^9, 3.9935175965631104`*^9},
+ CellLabel->"Out[25]=",ExpressionUUID->"5fde6a1a-ddb1-47c8-9eef-1dee0458a870"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Expand", " ", "the", " ", "Lie", " ", "derivative", " ", "of", " ", "TT",
+      " ", "into", " ", "tangent"}], "-", 
+    RowBox[{"basis", " ", "components"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"BasisExpand", "[", "%", "]"}]}]], "Input",
+ CellChangeTimes->{{3.971326578903223*^9, 3.9713265825449944`*^9}},
+ CellLabel->"In[26]:=",ExpressionUUID->"03becd7a-86c0-4908-ae12-57c37effe3d6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"TT", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"U", "[", "m29", "]"}], ",", 
+        RowBox[{"U", "[", "m26", "]"}], ",", 
+        RowBox[{"L", "[", "m27", "]"}], ",", 
+        RowBox[{"L", "[", "m28", "]"}]}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m25", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m29", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m25", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m26", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m27", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m28", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "-", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"TT", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "m25", "]"}], ",", 
+       RowBox[{"U", "[", "m29", "]"}], ",", 
+       RowBox[{"L", "[", "m27", "]"}], ",", 
+       RowBox[{"L", "[", "m28", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m26", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m29", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m25", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m26", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m27", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m28", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"TT", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "m25", "]"}], ",", 
+       RowBox[{"U", "[", "m26", "]"}], ",", 
+       RowBox[{"L", "[", "m29", "]"}], ",", 
+       RowBox[{"L", "[", "m28", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m29", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m27", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m25", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m26", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m27", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m28", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"TT", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "m25", "]"}], ",", 
+       RowBox[{"U", "[", "m26", "]"}], ",", 
+       RowBox[{"L", "[", "m27", "]"}], ",", 
+       RowBox[{"L", "[", "m29", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m29", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m28", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m25", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m26", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m27", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m28", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"TT", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "m25", "]"}], ",", 
+       RowBox[{"U", "[", "m26", "]"}], ",", 
+       RowBox[{"L", "[", "m27", "]"}], ",", 
+       RowBox[{"L", "[", "m28", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m31", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m31", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m25", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m26", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m27", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m28", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}]}]], "Output",
+ CellChangeTimes->{
+  3.971327029052146*^9, {3.971327216999723*^9, 3.97132722816407*^9}, 
+   3.9713274027451897`*^9, 3.993517596593041*^9},
+ CellLabel->"Out[26]=",ExpressionUUID->"fda5e8c4-eb9e-4426-a093-887bc83e26d6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Simplify", " ", "and", " ", "relabel", " ", "the", " ", "dummy", " ", 
+    "summation", " ", "indices"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"TensorSimplify", "[", "%", "]"}]}]], "Input",
+ CellChangeTimes->{{3.9713265868898582`*^9, 3.9713265909243183`*^9}},
+ CellLabel->"In[27]:=",ExpressionUUID->"79a89a61-445c-45b3-b663-4b935def05bf"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"TT", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "i", "]"}], ",", 
+       RowBox[{"U", "[", "j", "]"}], ",", 
+       RowBox[{"L", "[", "k", "]"}], ",", 
+       RowBox[{"L", "[", "l", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m", "]"}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "i", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "j", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "k", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "l", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"TT", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "i", "]"}], ",", 
+       RowBox[{"U", "[", "j", "]"}], ",", 
+       RowBox[{"L", "[", "k", "]"}], ",", 
+       RowBox[{"L", "[", "l", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "l", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "i", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "j", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "k", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "+", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"TT", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "i", "]"}], ",", 
+       RowBox[{"U", "[", "j", "]"}], ",", 
+       RowBox[{"L", "[", "k", "]"}], ",", 
+       RowBox[{"L", "[", "l", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "k", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "m", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "i", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "j", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "m", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "l", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "-", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"TT", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "i", "]"}], ",", 
+       RowBox[{"U", "[", "j", "]"}], ",", 
+       RowBox[{"L", "[", "k", "]"}], ",", 
+       RowBox[{"L", "[", "l", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "j", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "i", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "k", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "l", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], "-", 
+  RowBox[{
+   RowBox[{"Tensor", "[", 
+    RowBox[{"TT", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"U", "[", "i", "]"}], ",", 
+       RowBox[{"U", "[", "j", "]"}], ",", 
+       RowBox[{"L", "[", "k", "]"}], ",", 
+       RowBox[{"L", "[", "l", "]"}]}], "}"}], ",", 
+     RowBox[{"{", "}"}]}], "]"}], " ", 
+   RowBox[{"Tensor", "[", 
+    RowBox[{"v", ",", 
+     RowBox[{"{", 
+      RowBox[{"U", "[", "m", "]"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", "[", "i", "]"}], "}"}]}], "]"}], " ", 
+   RowBox[{
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "m", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"L", "[", "j", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "k", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}], "\[TensorProduct]", 
+    RowBox[{"Tensor", "[", 
+     RowBox[{"Basis", ",", 
+      RowBox[{"{", 
+       RowBox[{"U", "[", "l", "]"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}]}]], "Output",
+ CellChangeTimes->{3.971327029063273*^9, 3.971327406791628*^9, 
+  3.993517596630733*^9},
+ CellLabel->"Out[27]=",ExpressionUUID->"6f4958fa-e63b-49c4-b816-ae952fb5290b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Display", " ", "the", " ", "previous", " ", "result", " ", "in", " ", 
+     "OutputForm"}], ",", " ", 
+    RowBox[{
+    "the", " ", "readable", " ", "index", " ", "notation", " ", "of", " ", 
+     "the", " ", "Ricci", " ", "package"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"OutputForm", "[", "%", "]"}]}]], "Input",
+ CellChangeTimes->{{3.971326592479673*^9, 3.9713266003073597`*^9}},
+ CellLabel->"In[28]:=",ExpressionUUID->"2c6f9e75-a96e-468a-93f5-f7967e6fefe2"],
+
+Cell[OutputFormData["\<\
+TT[U[i], U[j], L[k], L[l]] [L[m]]*v[U[m]]*Basis[L[i]] \[TensorProduct] \
+Basis[L[j]] \[TensorProduct] Basis[U[k]] \[TensorProduct] Basis[U[l]] + \
+TT[U[i], U[j], L[k], L[l]]*v[U[l]] [L[m]]*Basis[L[i]] \[TensorProduct] \
+Basis[L[j]] \[TensorProduct] Basis[U[k]] \[TensorProduct] Basis[U[m]] + 
+
+   TT[U[i], U[j], L[k], L[l]]*v[U[k]] [L[m]]*Basis[L[i]] \[TensorProduct] \
+Basis[L[j]] \[TensorProduct] Basis[U[m]] \[TensorProduct] Basis[U[l]] - \
+TT[U[i], U[j], L[k], L[l]]*v[U[m]] [L[j]]*Basis[L[i]] \[TensorProduct] \
+Basis[L[m]] \[TensorProduct] Basis[U[k]] \[TensorProduct] Basis[U[l]] - 
+
+   TT[U[i], U[j], L[k], L[l]]*v[U[m]] [L[i]]*Basis[L[m]] \[TensorProduct] \
+Basis[L[j]] \[TensorProduct] Basis[U[k]] \[TensorProduct] Basis[U[l]]\
+\>", "\<\
+  i j          m                                 k           l        i j     \
+  l                                    k           m        i j       k       \
+                             m           l 
+TT            v   Basis   (X) (Basis   (X) (Basis   (X) Basis  )) + TT        \
+ v      Basis   (X) (Basis   (X) (Basis   (X) Basis  )) + TT         v      \
+Basis   (X) (Basis   (X) (Basis   (X) Basis  )) - 
+      k l ;m           i            j                                     k l \
+    ;m       i            j                                     k l     ;m    \
+   i            j 
+ 
+    i j       m                                    k           l        i j   \
+    m                                    k           l 
+  TT         v      Basis   (X) (Basis   (X) (Basis   (X) Basis  )) - TT      \
+   v      Basis   (X) (Basis   (X) (Basis   (X) Basis  ))
+        k l     ;j       i            m                                     k \
+l     ;i       m            j\
+\>"], "Output",
+ CellChangeTimes->{3.971327029091131*^9, 3.971327410009156*^9, 
+  3.9935175966541023`*^9},
+ CellLabel->
+  "Out[28]//OutputForm=",ExpressionUUID->"3a01699b-7dbd-4e5e-9a46-\
+9a7344cfe042"]
+}, Open  ]]
+},
+WindowSize->{1920., 746.25},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
+FrontEndVersion->"12.3 for Linux x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"af1c2649-7e22-428e-bd0c-940f61135804"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 951, 19, 51, "Input",ExpressionUUID->"1b397a33-bc0a-44c8-b002-085fb93d0a4e"],
+Cell[CellGroupData[{
+Cell[1534, 43, 537, 12, 51, "Input",ExpressionUUID->"650f6d1b-701e-4029-bf15-d724ee7e0b3b"],
+Cell[2074, 57, 234, 3, 33, "Output",ExpressionUUID->"68d2ef9e-d716-40a3-9144-18d20a1569ab"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2345, 65, 473, 10, 51, "Input",ExpressionUUID->"968e084e-8362-4af6-8f48-c74f00fb1332"],
+Cell[CellGroupData[{
+Cell[2843, 79, 266, 5, 23, "Print",ExpressionUUID->"4b1d27c1-b347-43d1-9321-764086893535"],
+Cell[3112, 86, 263, 5, 23, "Print",ExpressionUUID->"a753fcaf-3c4a-46d5-8f25-efa4bb78c5b9"],
+Cell[3378, 93, 266, 5, 23, "Print",ExpressionUUID->"3d45e640-19ec-420a-aec8-a1fc610592b8"],
+Cell[3647, 100, 255, 5, 23, "Print",ExpressionUUID->"fa605379-c2c7-4dfc-8a30-f98ab92a31f3"],
+Cell[3905, 107, 276, 6, 23, "Print",ExpressionUUID->"d6adc7f4-4efd-4a6b-a8af-a875ab45ef09"],
+Cell[4184, 115, 280, 6, 23, "Print",ExpressionUUID->"6f1538f1-43a6-4901-82a2-2b850ec544b0"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4513, 127, 1042, 25, 51, "Input",ExpressionUUID->"e7a4cf1b-2ab6-44f1-a196-9db7a4362491"],
+Cell[CellGroupData[{
+Cell[5580, 156, 630, 14, 23, "Print",ExpressionUUID->"bae14288-4d90-4804-bc3b-ca937618fbe9"],
+Cell[6213, 172, 492, 12, 23, "Print",ExpressionUUID->"f533cba6-8a68-4537-81bf-f7000b24574c"],
+Cell[6708, 186, 492, 12, 23, "Print",ExpressionUUID->"7922f1a9-d969-4401-999d-f1257d8063a9"],
+Cell[7203, 200, 492, 12, 23, "Print",ExpressionUUID->"62e2a5b9-63b9-40ea-9229-7c2f86d06abc"],
+Cell[7698, 214, 494, 12, 23, "Print",ExpressionUUID->"21b5da8e-57ea-4d62-9ddd-ca67b008b8f9"],
+Cell[8195, 228, 492, 12, 23, "Print",ExpressionUUID->"1fec392e-1576-4449-9f74-f5af49375aef"],
+Cell[8690, 242, 455, 12, 23, "Print",ExpressionUUID->"f6f5719c-55ab-4df8-b7ba-12e7998f0ff1"],
+Cell[9148, 256, 471, 11, 23, "Print",ExpressionUUID->"971f9c3d-ed49-44fe-9f7e-827a9f599390"],
+Cell[9622, 269, 627, 15, 23, "Print",ExpressionUUID->"80f6de48-f30f-429a-9328-8d59e102e1ea"],
+Cell[10252, 286, 455, 12, 23, "Print",ExpressionUUID->"5bf9e7d6-e813-4917-bd1c-65067b1a3a6f"],
+Cell[10710, 300, 493, 11, 23, "Print",ExpressionUUID->"a225cc79-9295-4a09-bcac-a9f460372fce"],
+Cell[11206, 313, 627, 15, 23, "Print",ExpressionUUID->"1acf35e0-3a30-4059-a3d8-05f17bcba35c"],
+Cell[11836, 330, 454, 12, 23, "Print",ExpressionUUID->"4e179e10-c66b-4cfe-a08c-5cc15eba07bd"],
+Cell[12293, 344, 469, 11, 23, "Print",ExpressionUUID->"9a1f351d-2678-4c5e-ba1a-a2d4f7c7ec78"],
+Cell[12765, 357, 627, 15, 23, "Print",ExpressionUUID->"b9dee649-abbb-4b7b-9d7e-a8f14b63e9d2"],
+Cell[13395, 374, 455, 12, 23, "Print",ExpressionUUID->"ffbc821a-7868-4729-b5e2-92251b416ec8"],
+Cell[13853, 388, 481, 11, 23, "Print",ExpressionUUID->"e2440e5a-98cc-4387-9c73-82516ebfeb28"],
+Cell[14337, 401, 629, 15, 23, "Print",ExpressionUUID->"cbc9ddba-c6dc-4948-b972-c61cbfd333d3"],
+Cell[14969, 418, 429, 10, 23, "Print",ExpressionUUID->"36ac9af3-a989-43f8-a948-f7bac71aff17"],
+Cell[15401, 430, 878, 20, 23, "Print",ExpressionUUID->"5a2fedf6-b74d-4701-8426-a7aff048f8bf"],
+Cell[16282, 452, 506, 12, 23, "Print",ExpressionUUID->"db1cfc03-2a44-44c0-8e2b-4c854df427e1"],
+Cell[16791, 466, 422, 10, 23, "Print",ExpressionUUID->"09f8dd22-1220-448b-9b20-1c34012c5884"],
+Cell[17216, 478, 481, 11, 23, "Print",ExpressionUUID->"3c462ef7-509f-4ee7-940e-0056bcd095d0"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17746, 495, 526, 14, 51, "Input",ExpressionUUID->"276d9d66-05df-475b-9ef6-0d0932294263"],
+Cell[CellGroupData[{
+Cell[18297, 513, 453, 12, 23, "Print",ExpressionUUID->"28107efe-5b75-4705-a2cd-de7b6e4ece98"],
+Cell[18753, 527, 483, 11, 23, "Print",ExpressionUUID->"c79f3ac2-9ff1-46ce-af78-7e9afda4d1e0"],
+Cell[19239, 540, 653, 16, 23, "Print",ExpressionUUID->"d01c66a7-3df9-4376-9973-ac029b2f98a4"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19941, 562, 602, 16, 51, "Input",ExpressionUUID->"1cc9c2c0-65cf-4cff-b3da-a7919fc2bf24"],
+Cell[CellGroupData[{
+Cell[20568, 582, 453, 12, 23, "Print",ExpressionUUID->"6ecb5ad2-8fa4-46fe-bcf3-a1afdbd7058e"],
+Cell[21024, 596, 481, 11, 23, "Print",ExpressionUUID->"00d4dad6-3a52-4500-a16a-4429cb85d76f"],
+Cell[21508, 609, 653, 16, 23, "Print",ExpressionUUID->"0a23b61a-6f8f-4d67-8995-ba079c82f902"]
+}, Open  ]],
+Cell[22176, 628, 298, 7, 33, "Output",ExpressionUUID->"65d30b26-65b8-4844-8a18-6fa9235272f0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22511, 640, 729, 18, 71, "Input",ExpressionUUID->"8c4820a6-619f-4441-aa15-77c4fa866c40"],
+Cell[CellGroupData[{
+Cell[23265, 662, 453, 12, 23, "Print",ExpressionUUID->"0c6973a3-e8a9-495b-9044-b9225db4ff1f"],
+Cell[23721, 676, 483, 11, 23, "Print",ExpressionUUID->"f0b4c2bd-ea3b-4ccf-8906-fa62a0a31ec3"],
+Cell[24207, 689, 661, 16, 23, "Print",ExpressionUUID->"d310505b-ac68-4ee6-89c1-a07dd63065af"]
+}, Open  ]],
+Cell[24883, 708, 300, 7, 33, "Output",ExpressionUUID->"1b754316-6c6b-43b0-9fcb-b5f7cc080400"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25220, 720, 447, 10, 51, "Input",ExpressionUUID->"64224939-67e1-436e-9e36-17eed69a63e7"],
+Cell[CellGroupData[{
+Cell[25692, 734, 455, 12, 23, "Print",ExpressionUUID->"7feaf91d-0607-47cf-bc6c-db83d5e993f6"],
+Cell[26150, 748, 483, 11, 23, "Print",ExpressionUUID->"481e4d79-36fb-4ea8-864d-2401d6670520"],
+Cell[26636, 761, 663, 16, 23, "Print",ExpressionUUID->"87166b5a-a66d-4328-974f-bd9f5cdf5ab6"]
+}, Open  ]],
+Cell[27314, 780, 299, 7, 33, "Output",ExpressionUUID->"0cfc2269-32cc-4d81-9933-535b49687fde"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27650, 792, 613, 15, 51, "Input",ExpressionUUID->"d6f714bc-a8c2-4e3e-92ec-330a1628e434"],
+Cell[28266, 809, 471, 13, 33, "Output",ExpressionUUID->"561a6bcf-3cd5-449e-9369-dda3556865bf"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28774, 827, 669, 16, 51, "Input",ExpressionUUID->"b6cb6942-eb46-4017-894d-b857ba398c97"],
+Cell[29446, 845, 470, 13, 33, "Output",ExpressionUUID->"b477b5e6-5195-4ae5-b9b1-67c04b9055f1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29953, 863, 555, 13, 51, "Input",ExpressionUUID->"5a8af1fe-4772-41e1-8b70-23797658ec55"],
+Cell[30511, 878, 1270, 38, 33, "Output",ExpressionUUID->"3ba65f90-7adc-43dd-886e-1ec35a1dc5cf"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31818, 921, 460, 10, 51, "Input",ExpressionUUID->"c1518ce7-0cde-49db-9dde-b710f5eafda9"],
+Cell[32281, 933, 1255, 38, 33, "Output",ExpressionUUID->"1b370e0a-bfe2-4475-a5b8-b1b963a28e0b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[33573, 976, 538, 12, 51, "Input",ExpressionUUID->"29863bfb-83a7-483a-8420-e567a08578eb"],
+Cell[34114, 990, 420, 11, 74, "Output",ExpressionUUID->"0d92398d-3406-4185-9306-69bd45ca9b54"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34571, 1006, 565, 13, 51, "Input",ExpressionUUID->"6251966d-3077-4358-bf3e-8675c653864e"],
+Cell[CellGroupData[{
+Cell[35161, 1023, 460, 12, 23, "Print",ExpressionUUID->"f5fed7b0-1732-4875-b1a0-2b5fc722cb71"],
+Cell[35624, 1037, 480, 11, 23, "Print",ExpressionUUID->"0219f231-c452-4ec0-a9bc-ae796665e4f6"],
+Cell[36107, 1050, 654, 16, 23, "Print",ExpressionUUID->"5a425b4d-5c10-4366-b4db-55f6f8e584fa"]
+}, Open  ]],
+Cell[36776, 1069, 305, 7, 33, "Output",ExpressionUUID->"a75f7fbc-5b2a-44c9-837e-e7fdcfb6f7da"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37118, 1081, 495, 12, 51, "Input",ExpressionUUID->"5c99707c-9719-4235-9450-7447554058c5"],
+Cell[37616, 1095, 495, 13, 33, "Output",ExpressionUUID->"09327113-d287-4449-ae35-2cf495ad2dad"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38148, 1113, 467, 10, 51, "Input",ExpressionUUID->"33e126a7-bbc7-4fe6-ad38-3a419410c5bf"],
+Cell[38618, 1125, 2644, 79, 75, "Output",ExpressionUUID->"e7ddbe46-89b9-43be-ba1c-7f0b123f3327"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41299, 1209, 400, 8, 51, "Input",ExpressionUUID->"51fb309d-d7cc-4ccd-96c3-55d7f6c6f004"],
+Cell[41702, 1219, 2605, 79, 55, "Output",ExpressionUUID->"2761a517-4b8c-496a-99c4-0938f0ddd17b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44344, 1303, 540, 12, 51, "Input",ExpressionUUID->"811e9e0c-150b-4584-b1f3-7ab4fd6b2ff4"],
+Cell[44887, 1317, 822, 16, 74, "Output",ExpressionUUID->"b5b16a8c-ab45-4334-8c27-fc7970462685"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[45746, 1338, 565, 12, 51, "Input",ExpressionUUID->"b68605d3-6aa8-4d3a-a1c0-ee67bc04f0be"],
+Cell[CellGroupData[{
+Cell[46336, 1354, 462, 12, 23, "Print",ExpressionUUID->"3f44ef14-b0aa-4425-b492-563b2903686b"],
+Cell[46801, 1368, 482, 11, 23, "Print",ExpressionUUID->"1e2e8536-e699-49d5-b4f1-8446305cd46c"],
+Cell[47286, 1381, 664, 16, 23, "Print",ExpressionUUID->"5f9f5258-9738-4ced-9b20-bb3ce2d9ccd0"]
+}, Open  ]],
+Cell[47965, 1400, 304, 7, 33, "Output",ExpressionUUID->"8fe14b5c-232e-4f39-8203-f965c4919db4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[48306, 1412, 548, 13, 51, "Input",ExpressionUUID->"68168d9d-add8-447e-a639-dab734e6b53c"],
+Cell[48857, 1427, 475, 13, 33, "Output",ExpressionUUID->"6adc7a9a-407b-41a6-977f-7a0b544c0c03"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[49369, 1445, 466, 10, 51, "Input",ExpressionUUID->"c9024df4-7226-400f-b553-34caedc5db9e"],
+Cell[49838, 1457, 2639, 80, 75, "Output",ExpressionUUID->"59896458-0785-4fb7-8e1c-6f0907d3d641"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[52514, 1542, 400, 8, 51, "Input",ExpressionUUID->"695ae752-4d95-4f9b-9a9e-a720659e3e77"],
+Cell[52917, 1552, 2577, 79, 55, "Output",ExpressionUUID->"4dfffd2f-9b96-49f6-8f35-51dd99e5514e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55531, 1636, 540, 12, 51, "Input",ExpressionUUID->"b80f8475-7029-4b91-9d08-b22b4575db71"],
+Cell[56074, 1650, 784, 16, 74, "Output",ExpressionUUID->"d91f857f-bcc4-48be-b5c3-691b73696d37"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[56895, 1671, 1020, 21, 51, "Input",ExpressionUUID->"a831a9a5-9b3c-4d2c-ad2c-6a7a885d6fca"],
+Cell[CellGroupData[{
+Cell[57940, 1696, 428, 11, 23, "Print",ExpressionUUID->"53a35cb1-edea-4a69-bd5b-8a472d22b469"],
+Cell[58371, 1709, 455, 10, 23, "Print",ExpressionUUID->"8b980338-3019-4c9f-8db4-6f6bbe64a176"],
+Cell[58829, 1721, 807, 20, 23, "Print",ExpressionUUID->"d1d42639-7f0f-4285-aeb7-2a71f24a5fe5"]
+}, Open  ]],
+Cell[59651, 1744, 275, 6, 33, "Output",ExpressionUUID->"a6da9f43-9492-4122-a689-ecbe3da09f66"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[59963, 1755, 680, 15, 51, "Input",ExpressionUUID->"53a8efd6-6554-4097-ab11-59b0c9dec12c"],
+Cell[60646, 1772, 618, 15, 33, "Output",ExpressionUUID->"5fde6a1a-ddb1-47c8-9eef-1dee0458a870"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[61301, 1792, 464, 10, 51, "Input",ExpressionUUID->"03becd7a-86c0-4908-ae12-57c37effe3d6"],
+Cell[61768, 1804, 6582, 191, 117, "Output",ExpressionUUID->"fda5e8c4-eb9e-4426-a093-887bc83e26d6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[68387, 2000, 400, 8, 51, "Input",ExpressionUUID->"79a89a61-445c-45b3-b663-4b935def05bf"],
+Cell[68790, 2010, 6403, 189, 117, "Output",ExpressionUUID->"6f4958fa-e63b-49c4-b816-ae952fb5290b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[75230, 2204, 540, 12, 51, "Input",ExpressionUUID->"2c6f9e75-a96e-468a-93f5-f7967e6fefe2"],
+Cell[75773, 2218, 1954, 35, 117, "Output",ExpressionUUID->"3a01699b-7dbd-4e5e-9a46-9a7344cfe042"]
+}, Open  ]]
+}
+]
+*)
+
