@@ -62,7 +62,7 @@ Get["EDCRGTCcode.m"];
 
 ```
 DiffGeo_Topology_in_Mathematica/
-├── *.nb                      # 45 topic notebooks (see index below)
+├── *.nb                      # 46 topic notebooks (see index below)
 └── Packages/                 # bundled add-on packages (third-party; see credits)
     ├── Ricci.m
     ├── DifferentialForms.m
@@ -77,6 +77,7 @@ DiffGeo_Topology_in_Mathematica/
 ### Topology
 | Notebook | Topic |
 |---|---|
+| `Topology.nb` | Finite topological spaces: the topology axioms (`IsTopologyQ`), connectedness (`IsConnectedQ`), and open covers |
 | `Cover.nb` | Open covers: testing whether a collection of sets covers a given set |
 | `Heine Borel.nb` | The Heine–Borel theorem / compactness |
 | `Homotopy.nb` | Homotopy of paths and maps |
