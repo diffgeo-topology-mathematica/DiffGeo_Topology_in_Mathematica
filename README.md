@@ -63,7 +63,7 @@ Get["EDCRGTCcode.m"];
 
 ```
 DiffGeo_Topology_in_Mathematica/
-├── *.nb                      # 46 topic notebooks (see index below)
+├── *.nb                      # 45 topic notebooks (see index below)
 └── Packages/                 # bundled add-on packages (third-party; see credits)
     ├── Ricci.m
     ├── DifferentialForms.m   (DifferentialForms_old.m kept for reference)
@@ -81,7 +81,6 @@ DiffGeo_Topology_in_Mathematica/
 | `Cover.nb` | Open covers: testing whether a collection of sets covers a given set |
 | `Heine Borel.nb` | The Heine–Borel theorem / compactness |
 | `Homotopy.nb` | Homotopy of paths and maps |
-| `topspacediag_nelements.nb` | Topologies on a finite set (counting/enumerating topologies) |
 
 ### Manifolds, maps & vector fields
 | Notebook | Topic |
