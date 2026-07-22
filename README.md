@@ -22,7 +22,6 @@ cell‑by‑cell alongside the corresponding material in the book.
 - [Notebook index](#notebook-index)
 - [Bundled packages & credits](#bundled-packages--credits)
 - [Notes](#notes)
-- [Contributors](#contributors)
 - [How to cite](#how-to-cite)
 - [License](#license)
 
@@ -66,7 +65,7 @@ DiffGeo_Topology_in_Mathematica/
 ├── *.nb                      # 45 topic notebooks (see index below)
 └── Packages/                 # bundled add-on packages (third-party; see credits)
     ├── Ricci.m
-    ├── DifferentialForms.m   (DifferentialForms_old.m kept for reference)
+    ├── DifferentialForms.m
     ├── Difform.m
     └── RGTC/
         ├── EDCRGTCcode.m      # EDC + RGTC tensor-calculus package
@@ -170,31 +169,22 @@ comment inside each file).
   `hopf_fibration_visualization.nb`, `berry_curvature.nb`, `Visualize_Berry_curvature_z.nb`,
   `Manifold_examples.nb`, `Vector_fields.nb`, and `SphericalCoordinates.nb`. Re‑evaluating them
   regenerates the figures.
-- `Packages/DifferentialForms_old.m` is a previous version kept for reference; the active package is
-  `Packages/DifferentialForms.m`.
-
-## Contributors
-
-This is a collaborative project. Contributors (from the commit history): **Souvik Bera**, **Souradeep Das**,
-**Sarthak**, **Subhasish**.
-<!-- Edit this section to your preferred attribution (full names, affiliations, ORCID, etc.). -->
 
 ## How to cite
 
 If you use these notebooks, please cite the accompanying book:
 
-> [Author(s)], *Elements of Topology, Differential Geometry and General Relativity for Physicists:
+> B. Ananthanarayan, S. Bera, S. Chakrabarty, S. Das, A. Lahiri, S. Sheikh, and S. Talukdar,
+> *Elements of Topology, Differential Geometry and General Relativity for Physicists:
 > A Mathematica‑based Tutorial Approach*, [Publisher], [Year].
-<!-- Fill in the author list, publisher, year, edition, and ISBN/DOI (and a link) once available. -->
+<!-- Fill in publisher, year, edition, and ISBN/DOI (and a link) once available. -->
 
 Please also credit the third‑party packages under [Bundled packages & credits](#bundled-packages--credits).
 
 ## License
 
-No license file is currently included. Note that the notebooks and the **bundled third‑party packages have
-separate licensing**: the packages in `Packages/` remain under their original authors' terms (see each
-file's header), while the notebooks are the contributors' own work.
+The notebooks in this repository are released under the **MIT License** — see [`LICENSE`](LICENSE).
 
-To make reuse terms explicit, consider adding a `LICENSE` file for the notebooks (for code, a permissive
-license such as **MIT**; for the expository/teaching content, a Creative Commons license such as
-**CC BY 4.0** is common) — and keep the bundled packages under their original licenses.
+The third‑party packages bundled in `Packages/` are **not** covered by this license: each remains under
+its original author's terms (see the header comment inside each file, and the
+[credits](#bundled-packages--credits) above).
